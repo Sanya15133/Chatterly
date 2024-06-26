@@ -1,18 +1,95 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <section>
+    <h1>Sign Up</h1>
+    <br>
+    <br>
+  <div class="form">
+    <fieldset>
+      <form @submit.prevent="onSubmit">
+        <label>Name</label>
+        <input v-model="name" type="text">
+        <br>
+        <label>Email</label>
+        <input v-model="email" type="text">
+        <br>
+        <label>Password</label>
+        <input v-model="password" type="password">
+        <br>
+        <label>Confirm Password</label>
+        <input v-model="confirmation" type="password">
+        <br>
+        <button type="submit">Submit</button>
+      </form>
+    </fieldset>
   </div>
+  </section>
 </template>
+
+<style scoped>
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  text-align: center;
+}
+
+form {
+  display: inline-block;
+}
+
+label {
+  display: block;
+  margin: 0.5em 0 0.2em;
+}
+
+input {
+  width: 100%;
+  padding: 0.5em;
+  margin-bottom: 1em;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 0.5em 2em;
+  cursor: pointer;
+}
+</style>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
 
 export default defineComponent({
-  name: 'HomeView',
-  components: {
-    HelloWorld
+  name: 'RegisterForm',
+  data () {
+    return {
+      name: '',
+      email: '',
+      password: '',
+      confirmation: ''
+    }
+  },
+  methods: {
+    onSubmit () {
+      const formData = {
+        name: this.name,
+        email: this.email,
+        password: this.password,
+        confirmation: this.confirmation
+      }
+      // i need to send data here
+      const regex = /^[A-Z][a-zA-Z]+$/
+      const result = regex.test(this.name)
+      if (result === false) {
+        alert('Name field should contain one uppercase letter')
+      }
+      const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/
+      const emailResult = emailRegex.test(this.email)
+      if (emailResult === false) {
+        alert('Email field should contain an email address')
+      }
+      console.log(formData)
+    }
   }
 })
 </script>

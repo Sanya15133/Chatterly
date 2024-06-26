@@ -4,7 +4,7 @@ import HomeView from '../views/HomeView.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'home',
+    name: 'RegisterForm',
     component: HomeView
   },
   {
