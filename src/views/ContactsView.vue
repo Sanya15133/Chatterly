@@ -1,9 +1,8 @@
 <template>
   <section>
-    <div class="contacts">
       <h1>Contacts Page</h1>
       <p>Add your contacts here</p>
-    </div>
+    <div class="form">
     <fieldset class="contact-form">
         <form @submit.prevent="onSubmit">
         <label>Contact Name</label><input v-model="name" type="text" />
@@ -11,6 +10,7 @@
         <br />
       </form>
     </fieldset>
+  </div>
   </section>
 </template>
 
@@ -19,7 +19,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 30vh;
+  height: 10vh;
   text-align: center;
 }
 

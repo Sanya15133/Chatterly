@@ -3,12 +3,14 @@
   <div class="chats">
     <h1>Chat Room</h1>
   </div>
+  <div class="form">
   <fieldset class="contact-form">
     <form>
       <label>Contact Name</label><input v-model="name" type="text">
       <br>
     </form>
   </fieldset>
+</div>
 </section>
 </template>
 
@@ -17,7 +19,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 30vh;
+  height: 10vh;
   text-align: center;
 }
 
