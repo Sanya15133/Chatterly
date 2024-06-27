@@ -18,7 +18,7 @@
         <label>Confirm Password</label>
         <input v-model="confirmation" type="password">
         <br>
-        <button type="submit">Submit</button>
+        <button type="submit">Register</button>
       </form>
     </fieldset>
   </div>
