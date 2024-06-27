@@ -5,8 +5,9 @@
       <p>Add your contacts here</p>
     </div>
     <fieldset class="contact-form">
-      <form>
+        <form @submit.prevent="onSubmit">
         <label>Contact Name</label><input v-model="name" type="text" />
+        <button type="submit">Add Contacts</button>
         <br />
       </form>
     </fieldset>
