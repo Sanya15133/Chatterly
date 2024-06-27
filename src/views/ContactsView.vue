@@ -2,6 +2,7 @@
   <section>
       <h1>Contacts Page</h1>
       <p>Add your contacts here</p>
+      <br>
     <div class="form">
     <fieldset class="contact-form">
         <form @submit.prevent="onSubmit">
