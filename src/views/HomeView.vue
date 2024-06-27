@@ -77,7 +77,6 @@ export default defineComponent({
         password: this.password,
         confirmation: this.confirmation
       }
-      // i need to send data here
       const regex = /^[A-Z][a-zA-Z]+$/
       const result = regex.test(this.name)
       if (result === false) {
@@ -88,6 +87,8 @@ export default defineComponent({
       if (emailResult === false) {
         alert('Email field should contain an email address')
       }
+
+      // i need to send data here
       console.log(formData)
     }
   }
