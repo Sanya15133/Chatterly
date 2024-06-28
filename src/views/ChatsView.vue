@@ -1,9 +1,14 @@
 <template>
+  <h1>Lets Chat!</h1>
   <div class="form">
-    <img>
-    <P>Contact name</P>
+    <div class="outline">
+    <img><P>Contact name</P>
+  </div>
+  <br>
+  <div class="outline">
     <p>Message here</p>
     <p>Date Time</p>
+  </div>
 <br>
     <form class="container">
       <label></label><input v-model="name" type="text">
@@ -14,6 +19,11 @@
 </template>
 
 <style scoped>
+.outline {
+  display: block;
+  margin-top: 0%;
+  border: 1px solid black;
+}
 
 label {
   display: block;
@@ -35,6 +45,7 @@ button {
 
 .form {
   margin: auto;
+  margin-top: 0%;
   width: 80%;
   border: 1px solid black;
   display: inline-block;
@@ -46,6 +57,11 @@ button {
 .container {
   display: flex;
   justify-content: space-between;
+}
+.user-detail {
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
 }
 input, button {
   height: 40px;
