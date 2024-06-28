@@ -63,7 +63,6 @@ button {
 .form {
   margin: auto;
   margin-top: 0%;
-  width: 80%;
   border: 1px solid black;
   display: inline-block;
   justify-content: center;
