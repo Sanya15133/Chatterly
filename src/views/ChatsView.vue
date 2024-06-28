@@ -59,17 +59,16 @@ button {
   display: inline-block;
   margin-left: 10px;
 }
-
 .form {
-  margin: auto;
-  margin-top: 0%;
   border: 1px solid black;
   display: inline-block;
   justify-content: center;
   align-items: center;
   text-align: left;
   padding: 1em;
+  width: 80%;
 }
+
 .container {
   display: flex;
   justify-content: space-between;
