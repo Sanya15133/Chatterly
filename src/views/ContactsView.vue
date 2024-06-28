@@ -7,7 +7,7 @@
     <fieldset class="contact-form">
         <form @submit.prevent="onSubmit">
         <label>Contact Name</label><input v-model="name" type="text" />
-        <button type="submit">Add Contacts</button>
+        <button type="submit">Add Contact</button>
         <br />
       </form>
     </fieldset>
