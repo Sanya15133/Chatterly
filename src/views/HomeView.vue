@@ -1,6 +1,5 @@
 <template>
   <section>
-    <h1>Sign Up</h1>
     <br>
     <br>
   <div class="form">
