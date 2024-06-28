@@ -1,8 +1,6 @@
 <template>
   <section>
   <div class="chats">
-    <h1>Chat Room</h1>
-  </div>
   <div class="form">
   <fieldset class="contact-form">
     <form>
@@ -10,6 +8,7 @@
       <br>
     </form>
   </fieldset>
+</div>
 </div>
 </section>
 </template>
