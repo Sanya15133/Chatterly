@@ -1,30 +1,19 @@
 <template>
-  <section>
-  <div class="chats">
   <div class="form">
-  <fieldset class="contact-form">
-    <form>
-      <label>Contact Name</label><input v-model="name" type="text">
+    <img>
+    <P>Contact name</P>
+    <p>Message here</p>
+    <p>Date Time</p>
+<br>
+    <form class="container">
+      <label></label><input v-model="name" type="text">
+      <button>Send</button>
       <br>
     </form>
-  </fieldset>
 </div>
-</div>
-</section>
 </template>
 
 <style scoped>
-.form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 10vh;
-  text-align: center;
-}
-
-form {
-  display: inline-block;
-}
 
 label {
   display: block;
@@ -39,8 +28,27 @@ input {
 }
 
 button {
-  padding: 0.5em 2em;
   cursor: pointer;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.form {
+  margin: auto;
+  width: 80%;
+  border: 1px solid black;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  padding: 1em;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+input, button {
+  height: 40px;
 }
 </style>
 
