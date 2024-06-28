@@ -32,7 +32,7 @@
   display: block;
   border: 1px solid black;
   padding: 1%;
-  margin: 5%;
+  margin: 3%;
 }
 
 .outline {

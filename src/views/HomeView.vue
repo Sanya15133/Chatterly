@@ -18,6 +18,8 @@
         <label>Confirm Password</label>
         <input v-model="confirmation" type="password">
         <br>
+        <label>Choose Avatar</label>
+        <input v-model="avatar" type="text">
         <button type="submit">Register</button>
       </form>
     </fieldset>
@@ -66,7 +68,8 @@ export default defineComponent({
       name: '',
       email: '',
       password: '',
-      confirmation: ''
+      confirmation: '',
+      avatar: ''
     }
   },
   methods: {
@@ -75,7 +78,8 @@ export default defineComponent({
         name: this.name,
         email: this.email,
         password: this.password,
-        confirmation: this.confirmation
+        confirmation: this.confirmation,
+        avatar: this.avatar
       }
       const regex = /^[A-Z][a-zA-Z]+$/
       const result = regex.test(this.name)
@@ -87,7 +91,17 @@ export default defineComponent({
       if (emailResult === false) {
         alert('Email field should contain an email address')
       }
-
+      function isValidUrl (string: string) {
+        try {
+          const url = new URL(string)
+          return true
+        } catch (err) {
+          return false
+        }
+      }
+      if (!isValidUrl(this.avatar)) {
+        alert('Invalid Url')
+      }
       // i need to send data here
       console.log(formData)
     }
