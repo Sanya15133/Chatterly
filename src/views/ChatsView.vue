@@ -1,13 +1,14 @@
 <template>
-  <h1>Lets Chat!</h1>
   <div class="form">
-    <div class="outline">
+    <div class="name-outline">
     <img><P>Contact name</P>
   </div>
   <br>
   <div class="outline">
+    <div class="msg-box">
     <p>Message here</p>
     <p>Date Time</p>
+  </div>
   </div>
 <br>
     <form class="container">
@@ -19,10 +20,26 @@
 </template>
 
 <style scoped>
+.name-outline {
+  display: block;
+  border: 1px solid black;
+  height: 8vh;
+  padding: 0;
+  text-align: left;
+}
+
+.msg-box {
+  display: block;
+  border: 1px solid black;
+  padding: 1%;
+  margin: 5%;
+}
+
 .outline {
   display: block;
   margin-top: 0%;
   border: 1px solid black;
+  height: 50vh
 }
 
 label {
