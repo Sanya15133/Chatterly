@@ -24,7 +24,7 @@
   display: block;
   border: 1px solid black;
   height: 8vh;
-  padding: 0;
+  padding: 1%;
   text-align: left;
 }
 
@@ -92,13 +92,17 @@ export default defineComponent({
   name: 'ChatsView',
   data () {
     return {
-      name: ''
+      name: '',
+      message: '',
+      date: Date.now()
     }
   },
   methods: {
     onSubmit () {
       const formData = {
-        name: this.name
+        name: this.name,
+        message: this.message,
+        date: this.date
       }
     }
   }
