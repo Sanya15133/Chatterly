@@ -31,9 +31,9 @@
   display: inline-block;
   justify-content: center;
   align-items: center;
-  height: 30vh;
   text-align: center;
   width: 80%;
+  height: 80%
 }
 
 form {

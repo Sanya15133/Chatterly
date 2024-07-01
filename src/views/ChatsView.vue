@@ -67,6 +67,7 @@ button {
   text-align: left;
   padding: 1em;
   width: 80%;
+  height: 80%
 }
 
 .container {
