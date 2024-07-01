@@ -5,6 +5,7 @@
   <div class="form">
     <fieldset>
       <form @submit.prevent="onSubmit">
+        <h1>Register</h1>
         <label>Name</label>
         <input v-model="name" type="text">
         <br>
