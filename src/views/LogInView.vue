@@ -1,11 +1,11 @@
 <template>
     <section>
-      <h1>Sign In</h1>
       <br>
       <br>
     <div class="form">
       <fieldset>
         <form @submit.prevent="onSubmit">
+          <h1>Sign In</h1>
           <label>Name</label>
           <input v-model="name" type="text">
           <br>
