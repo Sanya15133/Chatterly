@@ -37,7 +37,6 @@
 
 .outline {
   display: block;
-  margin-top: 0%;
   border: 1px solid black;
   height: 50vh
 }
@@ -60,12 +59,10 @@ button {
   margin-left: 10px;
 }
 .form {
-  border: 1px solid black;
   display: inline-block;
   justify-content: center;
   align-items: center;
   text-align: left;
-  padding: 1em;
   width: 80%;
   height: 80%
 }
