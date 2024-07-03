@@ -20,6 +20,7 @@
         <br>
         <label>Choose Avatar</label>
         <input v-model="avatar" type="text">
+        <p>Sign in</p>
         <button type="submit">Register</button>
       </form>
     </fieldset>
