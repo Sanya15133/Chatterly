@@ -1,13 +1,13 @@
 <template>
   <div class="form">
     <div class="name-outline">
-    <img><p>Contact name</p>
+    <img><p>{{name}}</p>
   </div>
   <br>
   <div class="outline">
     <div class="msg-box">
-    <p>Message here</p>
-    <p>Date Time</p>
+    <p id="message">{{message}}</p>
+    <p id="date">{{ date }}</p>
   </div>
   </div>
 <br>
@@ -91,7 +91,7 @@ export default defineComponent({
     return {
       name: '',
       message: '',
-      date: Date.now()
+      date: new Date().toISOString() // Update date on submit
     }
   },
   methods: {
@@ -101,12 +101,11 @@ export default defineComponent({
         message: this.message,
         date: this.date
       }
-      // Here you can send formData through the socket or perform other actions
     }
   },
   mounted () {
     socket.addEventListener('message', (event: MessageEvent) => {
-      console.log(event.data) // Handle incoming messages from WebSocket
+      console.log(event)
     })
   }
 })
