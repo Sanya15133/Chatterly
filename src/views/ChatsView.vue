@@ -56,7 +56,7 @@ input {
 button {
   cursor: pointer;
   display: inline-block;
-  margin-left: 10px;
+  margin-left: 10px
 }
 .form {
   display: inline-block;
