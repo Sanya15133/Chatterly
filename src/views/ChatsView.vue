@@ -1,7 +1,7 @@
 <template>
   <div class="form">
     <div class="name-outline">
-    <img><P>Contact name</P>
+    <img><p>Contact name</p>
   </div>
   <br>
   <div class="outline">
@@ -83,6 +83,7 @@ input, button {
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { socket } from '../websocket'
 
 export default defineComponent({
   name: 'ChatsView',
@@ -100,8 +101,13 @@ export default defineComponent({
         message: this.message,
         date: this.date
       }
+      // Here you can send formData through the socket or perform other actions
     }
+  },
+  mounted () {
+    socket.addEventListener('message', (event: MessageEvent) => {
+      console.log(event.data) // Handle incoming messages from WebSocket
+    })
   }
 })
-
 </script>
