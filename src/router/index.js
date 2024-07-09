@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-import RegisterView from '../views/HomeView.vue';
+import RegisterView from '../views/RegisterView.vue';
 import ContactsView from '../views/ContactsView.vue';
 import LoginView from '../views/LogInView.vue';
 const routes = [
