@@ -3,7 +3,6 @@
       <br>
       <br>
     <div class="form">
-      <fieldset>
         <form @submit.prevent="onSubmit">
           <h1>Sign In</h1>
           <label>Name</label>
@@ -14,7 +13,6 @@
           <br>
          <button type="submit">Sign In</button>
         </form>
-      </fieldset>
     </div>
     </section>
 </template>

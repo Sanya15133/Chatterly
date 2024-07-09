@@ -3,7 +3,6 @@
     <br>
     <br>
   <div class="form">
-    <fieldset>
       <form @submit.prevent="onSubmit">
         <h1>Register</h1>
         <label>Name</label>
@@ -23,7 +22,6 @@
         <p>Sign in</p>
         <button type="submit">Register</button>
       </form>
-    </fieldset>
   </div>
   </section>
 </template>
@@ -35,7 +33,7 @@
   align-items: center;
   text-align: center;
   width: 300px;
-  height: 80%;
+  height: 90%;
   padding: 3%
 }
 

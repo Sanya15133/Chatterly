@@ -66,7 +66,6 @@ button {
   justify-content: center;
   align-items: center;
   text-align: left;
-  border: 1px solid black;
   width: 300px;
   height: 80%;
   padding: 3%;

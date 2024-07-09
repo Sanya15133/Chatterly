@@ -2,14 +2,14 @@
   <section>
       <br>
     <div class="form">
-    <fieldset class="contact-form">
+    <div class="contact-form">
       <h1>Search Contacts</h1>
         <form @submit.prevent="onSubmit">
         <label>Contact Name</label><input v-model="name" type="text" />
         <button type="submit">Find Contact</button>
         <br />
       </form>
-    </fieldset>
+    </div>
   </div>
   </section>
 </template>
@@ -21,12 +21,13 @@
   align-items: center;
   text-align: center;
   width: 300px;
-  height: 80%;
+  height: 250px;
   padding: 3%
 }
 
 form {
   display: inline-block;
+  height: 80%;
 }
 
 label {
