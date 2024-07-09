@@ -1,12 +1,12 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
+import RegisterView from '../views/HomeView.vue';
 import ContactsView from '../views/ContactsView.vue';
 import LoginView from '../views/LogInView.vue';
 const routes = [
     {
         path: '/',
         name: 'RegisterForm',
-        component: HomeView
+        component: RegisterView
     },
     {
         path: '/login',

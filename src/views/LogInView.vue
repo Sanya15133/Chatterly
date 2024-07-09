@@ -25,8 +25,11 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 80%;
-  height: 80%
+  width: 300px;
+  height: 300px;
+  padding: 3%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 form {

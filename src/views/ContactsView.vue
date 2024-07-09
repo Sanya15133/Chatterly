@@ -3,9 +3,10 @@
       <br>
     <div class="form">
     <fieldset class="contact-form">
+      <h1>Search Contacts</h1>
         <form @submit.prevent="onSubmit">
         <label>Contact Name</label><input v-model="name" type="text" />
-        <button type="submit">Add Contact</button>
+        <button type="submit">Find Contact</button>
         <br />
       </form>
     </fieldset>
@@ -19,8 +20,9 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 80%;
-  height: 80%
+  width: 300px;
+  height: 300px;
+  padding: 3%
 }
 
 form {

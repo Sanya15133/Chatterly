@@ -23,7 +23,7 @@
 .name-outline {
   display: block;
   border: 1px solid black;
-  height: 8vh;
+  height: 5vh;
   padding: 1%;
   text-align: left;
 }
@@ -63,9 +63,9 @@ button {
   justify-content: center;
   align-items: center;
   text-align: left;
-  width: 80%;
-  height: 80%;
   border: 1px solid black;
+  width: 300px;
+  height: 80%;
   padding: 3%
 }
 
