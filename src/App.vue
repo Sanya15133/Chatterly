@@ -43,4 +43,10 @@ h1 {
     font-size: xx-large;
     text-align: center;
 }
+
+button {
+  background-color: rgb(212,175,55);
+  border-radius: 2%;
+  box-shadow: #111111;
+}
 </style>
