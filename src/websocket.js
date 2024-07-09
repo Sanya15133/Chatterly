@@ -1,1 +1,4 @@
-export const socket = new WebSocket('ws://localhost:8080');
+export const connectToSocket = () => {
+    const ws = new WebSocket('ws://localhost:3000');
+    return ws;
+};
