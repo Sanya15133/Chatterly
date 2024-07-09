@@ -1,21 +1,21 @@
 <template>
   <div class="form">
     <div class="name-outline">
-    <img><p>{{name}}</p>
+    <img><p></p>
   </div>
   <br>
   <div class="outline">
     <div class="msg-box">
-    <p id="message">{{message}}</p>
-    <p id="date">{{ date }}</p>
+    <p id="message"></p>
+    <p id="date"></p>
   </div>
   </div>
 <br>
-    <form class="container">
+    <div class="container">
       <label></label><input v-model="name" type="text">
       <button>Send</button>
       <br>
-    </form>
+    </div>
 </div>
 </template>
 
@@ -64,7 +64,9 @@ button {
   align-items: center;
   text-align: left;
   width: 80%;
-  height: 80%
+  height: 80%;
+  border: 1px solid black;
+  padding: 3%
 }
 
 .container {
@@ -83,7 +85,7 @@ input, button {
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { socket } from '../websocket'
+import { connectToSocket } from '../websocket'
 
 export default defineComponent({
   name: 'ChatsView',
@@ -91,22 +93,29 @@ export default defineComponent({
     return {
       name: '',
       message: '',
-      date: new Date().toISOString() // Update date on submit
-    }
-  },
-  methods: {
-    onSubmit () {
-      const formData = {
-        name: this.name,
-        message: this.message,
-        date: this.date
-      }
+      date: new Date(),
+      connection: connectToSocket()
     }
   },
   mounted () {
-    socket.addEventListener('message', (event: MessageEvent) => {
-      console.log(event)
-    })
+    console.log(this.connection)
+    if (this.connection) {
+      console.log('WebSocket created')
+    } else {
+      console.error('Failed to create WebSocket')
+    }
+    this.connection.onopen = (event: Event) => {
+      console.log('Connection opened', event)
+    }
+    this.connection.onmessage = (event: Event) => {
+      console.log('Server: ' + event)
+    }
+    this.connection.onerror = (event: Event) => {
+      console.error('Error', event)
+    }
+    this.connection.onclose = (event: Event) => {
+      console.error('Connection closed', event)
+    }
   }
 })
 </script>

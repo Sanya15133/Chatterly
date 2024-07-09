@@ -35,7 +35,8 @@
   align-items: center;
   text-align: center;
   width: 80%;
-  height: 80%
+  height: 80%;
+  padding: 3%
 }
 
 form {
