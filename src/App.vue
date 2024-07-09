@@ -5,7 +5,7 @@
     <router-link to="/contacts">Contacts</router-link>
     <router-link to="/login">Sign In</router-link>
   </nav>
-  <router-view/>
+  <router-view />
 </template>
 
 <style>
@@ -28,5 +28,9 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #42b983;
+}
+
+body {
+  background-color: rgb(120, 189, 189);
 }
 </style>
