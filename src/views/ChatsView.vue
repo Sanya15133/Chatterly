@@ -1,5 +1,6 @@
 <template>
   <div class="form">
+    <h1>Messages</h1>
     <div class="name-outline">
     <img><p></p>
   </div>
@@ -26,6 +27,7 @@
   height: 5vh;
   padding: 1%;
   text-align: left;
+  background-color: white;
 }
 
 .msg-box {
@@ -33,12 +35,13 @@
   border: 1px solid black;
   padding: 1%;
   margin: 3%;
+  background-color: white
 }
 
 .outline {
   display: block;
   border: 1px solid black;
-  height: 50vh
+  height: 50vh;
 }
 
 label {
@@ -66,7 +69,7 @@ button {
   border: 1px solid black;
   width: 300px;
   height: 80%;
-  padding: 3%
+  padding: 3%;
 }
 
 .container {

@@ -9,10 +9,9 @@
 </template>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Baskervville+SC&family=Ysabeau:ital,wght@0,1..1000;1,1..1000&display=swap');
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
 }
@@ -32,5 +31,16 @@ nav a.router-link-exact-active {
 
 body {
   background-color: rgb(120, 189, 189);
+}
+
+.form {
+  background-color: rgb(241, 240, 231);
+  border-radius: 5%;
+}
+
+h1 {
+    font-family: 'Ysabeau', fallback, sans-serif;
+    font-size: xx-large;
+    text-align: center;
 }
 </style>

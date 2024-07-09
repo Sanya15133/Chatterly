@@ -35,7 +35,7 @@
   align-items: center;
   text-align: center;
   width: 300px;
-  height: 300px;
+  height: 80%;
   padding: 3%
 }
 
