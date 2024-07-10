@@ -34,8 +34,19 @@ export const getChatsByName = () => {
         .then((response) => response.json())
         .then((body) => console.log(body));
 };
-export const postChats = () => {
-    fetch("mongo db when deployed")
-        .then((response) => response.json())
-        .then((body) => console.log(body));
+export const postChats = (name, message, date) => {
+    try {
+        fetch("mongo db when deployed", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ name, message, date }),
+        })
+            .then((response) => response.json())
+            .then((body) => console.log(body));
+    }
+    catch (error) {
+        console.error("An error occurred:", error);
+    }
 };
