@@ -19,7 +19,7 @@
         <br>
         <label>Choose Avatar</label>
         <input v-model="avatar" type="text">
-        <p>Sign in</p>
+        <p><router-link to="/login">Sign In</router-link> </p>
         <button type="submit">Register</button>
       </form>
   </div>
