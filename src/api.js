@@ -1,12 +1,22 @@
 export const getContacts = () => {
-    fetch("mongo db when deployed")
-        .then((response) => response.json())
-        .then((body) => console.log(body));
+    try {
+        fetch("mongo db when deployed")
+            .then((response) => response.json())
+            .then((body) => console.log(body));
+    }
+    catch (error) {
+        console.error("An error occurred:", error);
+    }
 };
 export const getContactsByName = (name) => {
-    fetch(`mongo db when deployed${name}`)
-        .then((response) => response.json())
-        .then((body) => console.log(body));
+    try {
+        fetch(`mongo db when deployed${name}`)
+            .then((response) => response.json())
+            .then((body) => console.log(body));
+    }
+    catch (error) {
+        console.error("An error occurred:", error);
+    }
 };
 export const postContact = (name, email, avatar) => {
     try {
@@ -25,14 +35,24 @@ export const postContact = (name, email, avatar) => {
     }
 };
 export const getChats = () => {
-    fetch("mongo db when deployed")
-        .then((response) => response.json())
-        .then((body) => console.log(body));
+    try {
+        fetch("mongo db when deployed")
+            .then((response) => response.json())
+            .then((body) => console.log(body));
+    }
+    catch (error) {
+        console.error("An error occurred:", error);
+    }
 };
 export const getChatsByName = (name) => {
-    fetch(`mongo db when deployed${name}`)
-        .then((response) => response.json())
-        .then((body) => console.log(body));
+    try {
+        fetch(`mongo db when deployed${name}`)
+            .then((response) => response.json())
+            .then((body) => console.log(body));
+    }
+    catch (error) {
+        console.error("An error occurred:", error);
+    }
 };
 export const postChats = (name, message, date) => {
     try {

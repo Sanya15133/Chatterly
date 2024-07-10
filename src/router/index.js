@@ -2,11 +2,17 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import RegisterView from '../views/RegisterView.vue';
 import ContactsView from '../views/ContactsView.vue';
 import LoginView from '../views/LogInView.vue';
+import PortalView from '../views/PortalView.vue';
 const routes = [
     {
         path: '/',
         name: 'RegisterForm',
         component: RegisterView
+    },
+    {
+        path: '/portal',
+        name: 'PortalView',
+        component: PortalView
     },
     {
         path: '/login',

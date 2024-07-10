@@ -4,6 +4,7 @@
     <router-link to="/chats">Chats</router-link>
     <router-link to="/contacts">Contacts</router-link>
     <router-link to="/login">Sign In</router-link>
+    <router-link to="/portal">Portal</router-link>
   </nav>
   <router-view />
 </template>
