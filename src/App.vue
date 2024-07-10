@@ -26,7 +26,7 @@ nav a {
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #e8c6f5;
 }
 
 body {
@@ -45,7 +45,7 @@ h1 {
 }
 
 button {
-  background-color: rgb(212,175,55);
+  background-color: rgb(204,188,175);
   border-radius: 2%;
   box-shadow: #111111;
 }

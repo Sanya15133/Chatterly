@@ -42,6 +42,7 @@
   display: block;
   border: 1px solid black;
   height: 50vh;
+  background-image: url('https://img.freepik.com/premium-photo/embossed-paper-texture-patternlight-bacground_546139-39.jpg')
 }
 
 label {
