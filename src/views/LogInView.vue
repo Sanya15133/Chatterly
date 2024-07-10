@@ -70,7 +70,8 @@ export default defineComponent({
         name: this.name,
         password: this.password
       }
-      console.log(formData)
+      const verifyFormData = getContactsByName(this.name)
+      console.log(verifyFormData)
     }
   }
 })
