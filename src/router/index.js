@@ -3,6 +3,7 @@ import RegisterView from '../views/RegisterView.vue';
 import FindContactsView from '../views/FindContactsView.vue';
 import LoginView from '../views/LogInView.vue';
 import PortalView from '../views/PortalView.vue';
+import ContactProfileView from '../views/ContactProfileView.vue';
 const routes = [
     {
         path: '/',
@@ -23,6 +24,11 @@ const routes = [
         path: '/contacts',
         name: 'ContactsList',
         component: FindContactsView
+    },
+    {
+        path: '/contacts/:name',
+        name: 'ContactView',
+        component: ContactProfileView
     },
     {
         path: '/chats',
