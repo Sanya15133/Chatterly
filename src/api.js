@@ -4,7 +4,7 @@ export const getContacts = () => {
         .then((body) => console.log(body));
 };
 export const getContactsByName = (name) => {
-    fetch("mongo db when deployed")
+    fetch(`mongo db when deployed${name}`)
         .then((response) => response.json())
         .then((body) => console.log(body));
 };
@@ -29,8 +29,8 @@ export const getChats = () => {
         .then((response) => response.json())
         .then((body) => console.log(body));
 };
-export const getChatsByName = () => {
-    fetch("mongo db when deployed")
+export const getChatsByName = (name) => {
+    fetch(`mongo db when deployed${name}`)
         .then((response) => response.json())
         .then((body) => console.log(body));
 };
