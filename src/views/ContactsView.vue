@@ -6,6 +6,7 @@
       <h1>Search Contacts</h1>
         <form @submit.prevent="onSubmit">
         <label>Contact Name</label><input v-model="name" type="text" />
+        <br/>
         <button type="submit">Find Contact</button>
         <br />
       </form>
