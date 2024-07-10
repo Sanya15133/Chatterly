@@ -51,16 +51,15 @@ label {
 }
 
 input {
-  width: 100%;
-  padding: 0.5em;
-  margin-bottom: 1em;
+  flex-shrink: 1;
   box-sizing: border-box;
+  width: 80%;
 }
 
 button {
   cursor: pointer;
-  display: inline-block;
-  margin-left: 10px
+  display: block;
+  margin-left: 10px;
 }
 .form {
   display: inline-block;
@@ -75,6 +74,8 @@ button {
 .container {
   display: flex;
   justify-content: space-between;
+  box-sizing: border-box;
+  flex-shrink: 1;
 }
 .user-detail {
   display: flex;
@@ -83,6 +84,8 @@ button {
 }
 input, button {
   height: 40px;
+  padding: 0.5em;
+  margin-bottom: 1em;
 }
 </style>
 
