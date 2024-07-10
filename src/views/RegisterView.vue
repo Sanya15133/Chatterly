@@ -60,6 +60,7 @@ button {
 </style>
 
 <script lang="ts">
+import { postContact } from '@/api'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -104,6 +105,7 @@ export default defineComponent({
         alert('Invalid Url')
       }
       // i need to send data here
+      const registerUser = postContact(this.name, this.email, this.password, this.avatar)
       console.log(formData)
     }
   }

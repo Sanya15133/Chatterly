@@ -18,14 +18,14 @@ export const getContactsByName = (name: string) => {
   }
 }
 
-export const postContact = (name: string, email: string, avatar: string) => {
+export const postContact = (name: string, email: string, password: string, avatar: string) => {
   try {
     fetch('mongo db when deployed', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ name, email, avatar })
+      body: JSON.stringify({ name, email, password, avatar })
     })
       .then((response) => response.json())
       .then((body) => console.log(body))
