@@ -8,7 +8,7 @@
   <div class="outline">
     <div class="msg-box">
     <p id="message-area"></p>
-    <p id="date"></p>
+    <p id="time"></p>
   </div>
   </div>
 <br>
@@ -129,6 +129,7 @@ export default defineComponent({
       this.connection.send(this.message)
       document.getElementById('message-area')?.append(this.message)
       this.message = ''
+      document.getElementById('time')?.append(new Date().toLocaleTimeString())
     }
   }
 })
