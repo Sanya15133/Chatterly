@@ -54,7 +54,7 @@ button {
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { getContactsByName } from '@/api';
+import { getContactsByName } from '@/api'
 
 export default defineComponent({
   name: 'LoginForm',
@@ -70,7 +70,6 @@ export default defineComponent({
         name: this.name,
         password: this.password
       }
-      const checkFormData = getContactsByName(this.name)
       console.log(formData)
     }
   }

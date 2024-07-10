@@ -1,11 +1,11 @@
 export const getContacts = () => {
     try {
-        fetch("mongo db when deployed")
+        fetch('mongo db when deployed')
             .then((response) => response.json())
             .then((body) => console.log(body));
     }
     catch (error) {
-        console.error("An error occurred:", error);
+        console.error('An error occurred:', error);
     }
 };
 export const getContactsByName = (name) => {
@@ -15,15 +15,15 @@ export const getContactsByName = (name) => {
             .then((body) => console.log(body));
     }
     catch (error) {
-        console.error("An error occurred:", error);
+        console.error('An error occurred:', error);
     }
 };
 export const postContact = (name, email, avatar) => {
     try {
-        fetch("mongo db when deployed", {
-            method: "POST",
+        fetch('mongo db when deployed', {
+            method: 'POST',
             headers: {
-                "Content-Type": "application/json",
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify({ name, email, avatar }),
         })
@@ -31,7 +31,7 @@ export const postContact = (name, email, avatar) => {
             .then((body) => console.log(body));
     }
     catch (error) {
-        console.error("An error occurred:", error);
+        console.error('An error occurred:', error);
     }
 };
 export const getChats = () => {
@@ -51,15 +51,15 @@ export const getChatsByName = (name) => {
             .then((body) => console.log(body));
     }
     catch (error) {
-        console.error("An error occurred:", error);
+        console.error('An error occurred:', error);
     }
 };
 export const postChats = (name, message, date) => {
     try {
-        fetch("mongo db when deployed", {
-            method: "POST",
+        fetch('mongo db when deployed', {
+            method: 'POST',
             headers: {
-                "Content-Type": "application/json",
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify({ name, message, date }),
         })
