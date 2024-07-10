@@ -7,16 +7,17 @@
   <br>
   <div class="outline">
     <div class="msg-box">
-    <p id="message"></p>
+    <p id="message-area"></p>
     <p id="date"></p>
   </div>
   </div>
 <br>
-    <div class="container">
-      <label></label><input v-model="name" type="text">
-      <button>Send</button>
-      <br>
-    </div>
+<form class="container" @submit.prevent="onSubmit">
+      <label for="messageInput"></label>
+      <input id="messageInput" v-model="message" type="text" placeholder="Message"/>
+      <button type="submit">Send</button>
+      <br />
+    </form>
 </div>
 </template>
 
@@ -110,17 +111,24 @@ export default defineComponent({
     } else {
       console.error('Failed to create WebSocket')
     }
-    this.connection.onopen = (event: Event) => {
+    this.connection.onopen = (event) => {
       console.log('Connection opened', event)
     }
-    this.connection.onmessage = (event: Event) => {
-      console.log('Server: ' + event)
+    this.connection.onmessage = (event) => {
+      console.log('Server: ' + event.data)
     }
-    this.connection.onerror = (event: Event) => {
+    this.connection.onerror = (event) => {
       console.error('Error', event)
     }
-    this.connection.onclose = (event: Event) => {
+    this.connection.onclose = (event) => {
       console.error('Connection closed', event)
+    }
+  },
+  methods: {
+    onSubmit () {
+      this.connection.send(this.message)
+      document.getElementById('message-area')?.append(this.message)
+      this.message = ''
     }
   }
 })
