@@ -69,3 +69,19 @@ export const postChats = (name: string, message: string, date: string) => {
     console.error('An error occurred:', error)
   }
 }
+
+export const signInContact = (name: string, password: string) => {
+  try {
+    fetch(`https://chatterly-be.onrender.com/users/${name}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ name, password })
+    })
+      .then((response) => response.json())
+      .then((body) => console.log(body))
+  } catch (error) {
+    console.error('An error occurred:', error)
+  }
+}
