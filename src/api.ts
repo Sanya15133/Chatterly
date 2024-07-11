@@ -72,7 +72,7 @@ export const postChats = (name: string, message: string, date: string) => {
 
 export const signInContact = (name: string, password: string) => {
   try {
-    fetch(`https://chatterly-be.onrender.com/users/${name}`, {
+    fetch(`https://chatterly-be.onrender.com/users/login/${name}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
