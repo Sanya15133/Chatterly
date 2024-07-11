@@ -1,6 +1,6 @@
 export const getContacts = () => {
     try {
-        fetch('mongo db when deployed')
+        fetch('https://chatterly-be.onrender.com/users')
             .then((response) => response.json())
             .then((body) => console.log(body));
     }
@@ -10,7 +10,7 @@ export const getContacts = () => {
 };
 export const getContactsByName = (name) => {
     try {
-        fetch(`mongo db when deployed${name}`)
+        fetch(`https://chatterly-be.onrender.com/users/${name}`)
             .then((response) => response.json())
             .then((body) => console.log(body));
     }
@@ -20,7 +20,7 @@ export const getContactsByName = (name) => {
 };
 export const postContact = (name, email, password, avatar) => {
     try {
-        fetch('mongo db when deployed', {
+        fetch('https://chatterly-be.onrender.com/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -36,7 +36,7 @@ export const postContact = (name, email, password, avatar) => {
 };
 export const getChats = () => {
     try {
-        fetch('mongo db when deployed')
+        fetch('https://chatterly-be.onrender.com/chats')
             .then((response) => response.json())
             .then((body) => console.log(body));
     }
@@ -46,7 +46,7 @@ export const getChats = () => {
 };
 export const getChatsByName = (name) => {
     try {
-        fetch(`mongo db when deployed${name}`)
+        fetch(`https://chatterly-be.onrender.com/chats/${name}`)
             .then((response) => response.json())
             .then((body) => console.log(body));
     }
@@ -56,7 +56,7 @@ export const getChatsByName = (name) => {
 };
 export const postChats = (name, message, date) => {
     try {
-        fetch('mongo db when deployed', {
+        fetch('https://chatterly-be.onrender.com/chats', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
