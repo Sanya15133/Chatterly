@@ -50,6 +50,7 @@ button {
 </style>
 
 <script lang='ts'>
+import { getContactsByName } from '@/api'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -63,6 +64,10 @@ export default defineComponent({
     onSubmit () {
       const formData = {
         name: this.name
+      }
+      const contactExists = getContactsByName(this.name)
+      if (contactExists === undefined) {
+        alert('Contact does not exist')
       }
     }
   }
