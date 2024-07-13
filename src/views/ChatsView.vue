@@ -24,7 +24,7 @@
 <style scoped>
 .name-outline {
   display: block;
-  border: 1px solid black;
+  border: 1px solid lightgray;
   height: 5vh;
   padding: 1%;
   text-align: left;
@@ -33,7 +33,7 @@
 
 .msg-box {
   display: block;
-  border: 1px solid black;
+  border: 1px solid lightgray;
   padding: 1%;
   margin: 3%;
   background-color: white
@@ -41,7 +41,7 @@
 
 .outline {
   display: block;
-  border: 1px solid black;
+  border: 1px solid lightgray;
   height: 50vh;
   background-image: url('https://img.freepik.com/premium-photo/embossed-paper-texture-patternlight-bacground_546139-39.jpg')
 }

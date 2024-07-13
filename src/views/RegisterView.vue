@@ -106,7 +106,7 @@ export default defineComponent({
       }
       // i need to send data here
       const registerUser = postContact(this.name, this.email, this.password, this.avatar)
-      console.log(formData)
+      console.log(registerUser)
     }
   }
 })
