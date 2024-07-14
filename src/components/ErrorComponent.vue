@@ -9,17 +9,10 @@
 <script lang="ts">
 import { defineComponent } from "vue"
 
-export default defineComponent({
-  name: "ErrorComponent",
-  data() {
-    return {
-      status: "",
-      error: ""
+export default {
+    props: {
+      Status: Number,
+      Message: String,
     }
-  },
-  props: {
-    status: Number,
-    error: String
   }
-})
 </script>
