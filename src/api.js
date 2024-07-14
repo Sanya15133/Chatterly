@@ -1,6 +1,6 @@
-export const getContacts = () => {
+export const getContacts = async () => {
     try {
-        fetch('https://chatterly-be.onrender.com/users')
+        await fetch('https://chatterly-be.onrender.com/users')
             .then((response) => response.json())
             .then((body) => console.log(body));
     }
@@ -8,9 +8,9 @@ export const getContacts = () => {
         console.error('An error occurred:', error);
     }
 };
-export const getContactsByName = (name) => {
+export const getContactsByName = async (name) => {
     try {
-        fetch(`https://chatterly-be.onrender.com/users/${name}`)
+        await fetch(`https://chatterly-be.onrender.com/users/${name}`)
             .then((response) => response.json())
             .then((body) => console.log(body));
     }
@@ -18,9 +18,9 @@ export const getContactsByName = (name) => {
         console.error('An error occurred:', error);
     }
 };
-export const postContact = (name, email, password, avatar) => {
+export const postContact = async (name, email, password, avatar) => {
     try {
-        fetch('https://chatterly-be.onrender.com/users', {
+        await fetch('https://chatterly-be.onrender.com/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -34,9 +34,9 @@ export const postContact = (name, email, password, avatar) => {
         console.error('An error occurred:', error);
     }
 };
-export const getChats = () => {
+export const getChats = async () => {
     try {
-        fetch('https://chatterly-be.onrender.com/chats')
+        await fetch('https://chatterly-be.onrender.com/chats')
             .then((response) => response.json())
             .then((body) => console.log(body));
     }
@@ -44,9 +44,9 @@ export const getChats = () => {
         console.error('An error occurred:', error);
     }
 };
-export const getChatsByName = (name) => {
+export const getChatsByName = async (name) => {
     try {
-        fetch(`https://chatterly-be.onrender.com/chats/${name}`)
+        await fetch(`https://chatterly-be.onrender.com/chats/${name}`)
             .then((response) => response.json())
             .then((body) => console.log(body));
     }
@@ -54,9 +54,9 @@ export const getChatsByName = (name) => {
         console.error('An error occurred:', error);
     }
 };
-export const postChats = (name, message, date) => {
+export const postChats = async (name, message, date) => {
     try {
-        fetch('https://chatterly-be.onrender.com/chats', {
+        await fetch('https://chatterly-be.onrender.com/chats', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -70,9 +70,9 @@ export const postChats = (name, message, date) => {
         console.error('An error occurred:', error);
     }
 };
-export const signInContact = (name, password) => {
+export const signInContact = async (name, password) => {
     try {
-        fetch('https://chatterly-be.onrender.com/users/login', {
+        await fetch('https://chatterly-be.onrender.com/users/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
