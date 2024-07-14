@@ -18,7 +18,7 @@ export default defineComponent({
     }
   },
   props: {
-    status: String,
+    status: Number,
     error: String
   }
 })
