@@ -1,15 +1,25 @@
 <template>
-<div>
-<h1></h1>
-
-</div>
+  <div>
+    <h2></h2>
+  </div>
 </template>
 
-<style>
-
-</style>
+<style></style>
 
 <script lang="ts">
+import { defineComponent } from "vue"
 
-
+export default defineComponent({
+  name: "ErrorComponent",
+  data() {
+    return {
+      status: "",
+      error: ""
+    }
+  },
+  props: {
+    status: String,
+    error: String,
+  },
+})
 </script>
