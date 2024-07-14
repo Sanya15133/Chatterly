@@ -10,7 +10,7 @@
         <button type="submit">Find Contact</button>
         <br />
       </form>
-      <ErrorComponent v-if="Message" :Status="404" :Message="Message" />
+      <ErrorComponent v-if="Message" :Status="Status" :Message="Message" />
     </div>
   </div>
   </section>
@@ -75,6 +75,7 @@ export default defineComponent({
       const contactExists = await getContactsByName(this.name)
       if (contactExists === undefined) {
         this.Message = 'Contact does not exist'
+        this.Status = '404'
       }
     }
   }

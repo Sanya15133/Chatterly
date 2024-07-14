@@ -7,10 +7,12 @@
 
 <style>
 .error-box {
-    background-color: azure;
+    background-color: grey;
     border: 1px solid black;
     justify-content: center;
     text-align: center;
+    height: 70%;
+    width: 70%
 }
 </style>
 
@@ -20,7 +22,7 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'ErrorBox',
   props: {
-    Status: Number,
+    Status: String,
     Message: String
   }
 })
