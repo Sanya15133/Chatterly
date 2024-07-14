@@ -10,6 +10,7 @@
         <button type="submit">Find Contact</button>
         <br />
       </form>
+      <ErrorComponent v-if="Message" :Status="404" :Message="Message" />
     </div>
   </div>
   </section>
@@ -52,22 +53,28 @@ button {
 <script lang='ts'>
 import { getContactsByName } from '@/api'
 import { defineComponent } from 'vue'
+import ErrorComponent from '../components/ErrorComponent.vue'
 
 export default defineComponent({
   name: 'ContactsView',
+  components: {
+    ErrorComponent
+  },
   data () {
     return {
+      Status: '',
+      Message: '',
       name: ''
     }
   },
   methods: {
-    onSubmit () {
+    async onSubmit () {
       const formData = {
         name: this.name
       }
-      const contactExists = getContactsByName(this.name)
+      const contactExists = await getContactsByName(this.name)
       if (contactExists === undefined) {
-        alert('Contact does not exist')
+        this.Message = 'Contact does not exist'
       }
     }
   }

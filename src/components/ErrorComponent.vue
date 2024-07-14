@@ -1,18 +1,27 @@
 <template>
-  <div>
-    <h2></h2>
+  <div class="error-box">
+    <p>{{ Status }}</p>
+    <p>{{ Message }}</p>
   </div>
 </template>
 
-<style></style>
+<style>
+.error-box {
+    background-color: azure;
+    border: 1px solid black;
+    justify-content: center;
+    text-align: center;
+}
+</style>
 
 <script lang="ts">
-import { defineComponent } from "vue"
+import { defineComponent } from 'vue'
 
-export default {
-    props: {
-      Status: Number,
-      Message: String,
-    }
+export default defineComponent({
+  name: 'ErrorBox',
+  props: {
+    Status: Number,
+    Message: String
   }
+})
 </script>
