@@ -6,11 +6,11 @@
       <h1>Search Contacts</h1>
         <form @submit.prevent="onSubmit">
         <label>Contact Name</label><input v-model="name" type="text" />
+        <ErrorComponent v-if="Message" :Status="Status" :Message="Message" />
         <br/>
         <button type="submit">Find Contact</button>
         <br />
       </form>
-      <ErrorComponent v-if="Message" :Status="Status" :Message="Message" />
     </div>
   </div>
   </section>

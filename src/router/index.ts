@@ -4,7 +4,6 @@ import FindContactsView from '../views/FindContactsView.vue'
 import LoginView from '../views/LogInView.vue'
 import PortalView from '../views/PortalView.vue'
 import ContactProfileView from '../views/ContactProfileView.vue'
-import ErrorComponent from '@/components/ErrorComponent.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {

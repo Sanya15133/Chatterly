@@ -7,12 +7,10 @@
 
 <style>
 .error-box {
-    background-color: grey;
+    background-color: rgb(183, 187, 192);
     border: 1px solid black;
     justify-content: center;
     text-align: center;
-    height: 70%;
-    width: 70%
 }
 </style>
 
