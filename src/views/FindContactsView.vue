@@ -2,6 +2,7 @@
   <section>
       <br>
     <div class="form">
+    <LoadingComponent/>
     <div class="contact-form">
       <h1>Search Contacts</h1>
         <form @submit.prevent="onSubmit">
@@ -54,21 +55,24 @@ button {
 import { getContactsByName } from '@/api'
 import { defineComponent } from 'vue'
 import ErrorComponent from '../components/ErrorComponent.vue'
+import LoadingComponent from '../components/LoadingComponent.vue'
 
 export default defineComponent({
   name: 'ContactsView',
   components: {
-    ErrorComponent
+    ErrorComponent, LoadingComponent
   },
   data () {
     return {
       Status: '',
       Message: '',
-      name: ''
+      name: '',
+      loading: false
     }
   },
   methods: {
     async onSubmit () {
+      this.loading = true
       const formData = {
         name: this.name
       }
