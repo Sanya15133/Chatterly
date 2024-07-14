@@ -19,7 +19,7 @@ export default defineComponent({
   },
   props: {
     status: String,
-    error: String,
-  },
+    error: String
+  }
 })
 </script>
