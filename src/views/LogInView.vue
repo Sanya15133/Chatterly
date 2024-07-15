@@ -59,7 +59,8 @@ import { signInContact } from '@/api'
 import ErrorComponent from '@/components/ErrorComponent.vue'
 import LoadingComponent from '@/components/LoadingComponent.vue'
 import router from '@/router'
-import bcrypt from 'bcrypt'
+// import bcrypt from 'bcrypt'
+// && bcrypt.checkpw(verifyFormData.password, formData.password)
 
 export default defineComponent({
   name: 'LoginForm',
@@ -87,7 +88,7 @@ export default defineComponent({
       try {
         const verifyFormData = await signInContact(formData.name, formData.password)
         this.isLoading = false
-        if (verifyFormData.name !== formData.name && bcrypt.checkpw(verifyFormData.password, formData.password)) {
+        if (verifyFormData.name !== formData.name) {
           this.Message = 'User not found'
           this.Status = '404'
           router.push({ path: '/register' })

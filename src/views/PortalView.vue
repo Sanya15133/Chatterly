@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>My Account</h1>
-    <p class="name">{{ name }}</p>
+    <p>{{ name }}</p>
     <img v-if="avatarUrl" :src="avatarUrl" alt="Profile Avatar">
   <div class="form">
     <h2>View</h2>
