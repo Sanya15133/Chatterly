@@ -86,7 +86,6 @@ export default defineComponent({
           this.Message = 'Contact does not exist'
           this.Status = '404'
         } else {
-          console.log(contactExists.user.avatar)
           this.$router.push({
             name: 'ContactView',
             params: {

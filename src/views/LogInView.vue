@@ -6,10 +6,10 @@
         <form @submit.prevent="onSubmit">
           <h1>Sign In</h1>
           <label>Name</label>
-          <input v-model="name" type="text">
+          <input v-model="name" type="text" placeholder="name" required>
           <br>
           <label>Password</label>
-          <input v-model="password" type="password">
+          <input v-model="password" type="password" placeholder="password" required>
           <br>
          <button type="submit">Sign In</button>
         </form>
@@ -70,7 +70,7 @@ export default defineComponent({
         name: this.name,
         password: this.password
       }
-      const verifyFormData = await signInContact(this.name, this.password)
+      const verifyFormData = await signInContact(formData.name, formData.password)
       // this.$emit('user-logged-in', user)
       console.log(verifyFormData)
     }

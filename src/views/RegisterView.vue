@@ -6,19 +6,20 @@
       <form @submit.prevent="onSubmit">
         <h1>Register</h1>
         <label>Name</label>
-        <input v-model="name" type="text">
+        <input v-model="name" type="text" placeholder="name" required>
+        <ErrorComponent v-if="Message" :Status="Status" :Message="Message" />
         <br>
         <label>Email</label>
-        <input v-model="email" type="text">
+        <input v-model="email" type="text" placeholder="email" required>
         <br>
         <label>Password</label>
-        <input v-model="password" type="password">
+        <input v-model="password" type="password" required placeholder="password">
         <br>
         <label>Confirm Password</label>
-        <input v-model="confirmation" type="password">
+        <input v-model="confirmation" type="password" required placeholder="confirmation">
         <br>
         <label>Choose Avatar</label>
-        <input v-model="avatar" type="text">
+        <input v-model="avatar" type="text" placeholder="avatar">
         <p><router-link to="/login">Sign In</router-link> </p>
         <button type="submit">Register</button>
       </form>
@@ -62,20 +63,28 @@ button {
 <script lang="ts">
 import { postContact } from '@/api'
 import { defineComponent } from 'vue'
+import ErrorComponent from '@/components/ErrorComponent.vue'
 
 export default defineComponent({
   name: 'RegisterForm',
+  components: {
+    ErrorComponent
+  },
   data () {
     return {
       name: '',
       email: '',
       password: '',
       confirmation: '',
-      avatar: ''
+      avatar: '',
+      Status: '',
+      Message: ''
     }
   },
   methods: {
-    onSubmit () {
+    async onSubmit () {
+      this.Message = ''
+      this.Status = ''
       const formData = {
         name: this.name,
         email: this.email,
@@ -84,28 +93,18 @@ export default defineComponent({
         avatar: this.avatar
       }
       const regex = /^[A-Z][a-zA-Z]+$/
-      const result = regex.test(this.name)
+      const result = regex.test(formData.name)
       if (result === false) {
-        alert('Name field should contain one uppercase letter')
+        this.Message = 'Name field should contain one uppercase letter'
+        this.Status = '400'
       }
       const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/
-      const emailResult = emailRegex.test(this.email)
+      const emailResult = emailRegex.test(formData.email)
       if (emailResult === false) {
-        alert('Email field should contain an email address')
+        this.Message = 'Email field should contain an email address'
+        this.Status = '400'
       }
-      function isValidUrl (string: string) {
-        try {
-          const url = new URL(string)
-          return true
-        } catch (err) {
-          return false
-        }
-      }
-      if (!isValidUrl(this.avatar)) {
-        alert('Invalid Url')
-      }
-      // i need to send data here
-      const registerUser = postContact(this.name, this.email, this.password, this.avatar)
+      const registerUser = await postContact(formData.name, formData.email, formData.password, formData.avatar)
       console.log(registerUser)
     }
   }
