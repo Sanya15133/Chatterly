@@ -31,7 +31,7 @@ const routes = [
         component: ContactProfileView
     },
     {
-        path: '/chats',
+        path: '/chats/:name',
         name: 'chats',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route

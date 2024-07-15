@@ -86,7 +86,7 @@ export default defineComponent({
       } else if (contactExists !== undefined) {
         this.Message = ''
         this.Status = ''
-        console.log(contactExists)
+        this.$router.push(`contacts/${this.name}`)
       }
     }
   }
