@@ -24,17 +24,20 @@ const routes = [
     {
         path: '/contacts',
         name: 'ContactsList',
-        component: FindContactsView
+        component: FindContactsView,
+        props: true
     },
     {
         path: '/contacts/:name',
         name: 'ContactView',
-        component: ContactProfileView
+        component: ContactProfileView,
+        props: true
     },
     {
         path: '/chats/:name',
         name: 'ChatsView',
-        component: ChatsView
+        component: ChatsView,
+        props: true
     }
     // {
     //   path: '/chats',

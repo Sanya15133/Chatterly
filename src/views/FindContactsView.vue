@@ -1,18 +1,18 @@
 <template>
   <section>
-      <br>
     <div class="form">
-    <div class="contact-form">
-      <h1>Search Contacts</h1>
+      <div class="contact-form">
+        <h1>Search Contacts</h1>
         <form @submit.prevent="onSubmit">
-        <label>Contact Name</label><input v-model="name" type="text" required/>
-        <ErrorComponent v-if="Message" :Status="Status" :Message="Message" />
-        <br/>
-        <button type="submit">Find Contact</button>
-        <br />
-      </form>
+          <label>Contact Name</label>
+          <input v-model="contactname" type="text" required/>
+          <ErrorComponent v-if="Message" :Status="Status" :Message="Message" />
+          <br/>
+          <button type="submit">Find Contact</button>
+          <br />
+        </form>
+      </div>
     </div>
-  </div>
   </section>
   <LoadingComponent v-if="isLoading"/>
 </template>
@@ -51,7 +51,7 @@ button {
 }
 </style>
 
-<script lang='ts'>
+<script lang="ts">
 import { getContactsByName } from '@/api'
 import { defineComponent } from 'vue'
 import ErrorComponent from '../components/ErrorComponent.vue'
@@ -62,34 +62,48 @@ export default defineComponent({
   components: {
     ErrorComponent, LoadingComponent
   },
+  props: {
+    name: String,
+    avatar: String
+  },
   data () {
     return {
       Status: '',
       Message: '',
-      name: '',
-      isLoading: false
+      isLoading: false,
+      contactname: ''
     }
   },
   methods: {
     async onSubmit () {
       this.Message = ''
       this.Status = ''
-      const formData = {
-        name: this.name
-      }
       this.isLoading = true
-      const contactExists = await getContactsByName(this.name)
-      this.isLoading = false
-      if (contactExists === undefined) {
-        this.Message = 'Contact does not exist'
-        this.Status = '404'
-      } else if (contactExists !== undefined) {
-        this.Message = ''
-        this.Status = ''
-        this.$router.push(`contacts/${this.name}`)
+      try {
+        const contactExists = await getContactsByName(this.contactname)
+        this.isLoading = false
+        if (!contactExists) {
+          this.Message = 'Contact does not exist'
+          this.Status = '404'
+        } else {
+          console.log(contactExists.user.avatar)
+          this.$router.push({
+            name: 'ContactView',
+            params: {
+              name: contactExists.user.name
+            },
+            query: {
+              avatar: contactExists.user.avatar
+            }
+          })
+        }
+      } catch (error) {
+        console.error('Error fetching contact:', error)
+        this.Message = 'Error fetching contact'
+        this.Status = '500'
+        this.isLoading = false
       }
     }
   }
 })
-
 </script>

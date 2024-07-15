@@ -1,10 +1,9 @@
 <template>
     <div class="container">
-      <h1>Contact name</h1>
-      <p class="name"></p>
-      <img class="avatar" />
+      <h1>{{ name }}</h1>
+      <img v-if="avatarUrl" :src="avatarUrl" alt="Contact Avatar">
     <div class="form">
-      <p>Click on the button below to view messages</p>
+      <p>Click on the button below to view messages with {{ name }}</p>
       <button @click="$router.push('chats/:name')">Messages</button>
     </div>
     </div>
@@ -26,11 +25,29 @@
     display: inline-block;
     align-items: center;
   }
+  img {
+    border: 1px solid lightgray;
+    height: 50%;
+    width: 50%;
+    justify-content: center;
+    border-radius: 5%;
+    align-items: center;
+    display: block;
+  }
   </style>
 <script lang="ts">
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'ContactView'
+  name: 'ContactView',
+  props: {
+    name: String
+  },
+  computed: {
+    avatarUrl (): string | undefined {
+      return this.$route.query.avatar as string | undefined
+    }
+  }
 })
+
 </script>
