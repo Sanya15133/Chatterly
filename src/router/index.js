@@ -4,6 +4,7 @@ import FindContactsView from '../views/FindContactsView.vue';
 import LoginView from '../views/LogInView.vue';
 import PortalView from '../views/PortalView.vue';
 import ContactProfileView from '../views/ContactProfileView.vue';
+import ChatsView from '@/views/ChatsView.vue';
 const routes = [
     {
         path: '/',
@@ -32,12 +33,17 @@ const routes = [
     },
     {
         path: '/chats/:name',
-        name: 'chats',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '../views/ChatsView.vue')
+        name: 'ChatsView',
+        component: ChatsView
     }
+    // {
+    //   path: '/chats',
+    //   name: 'chats',
+    //   // route level code-splitting
+    //   // this generates a separate chunk (about.[hash].js) for this route
+    //   // which is lazy-loaded when the route is visited.
+    //   component: () => import(/* webpackChunkName: "about" */ '../views/ChatsView.vue')
+    // }
 ];
 const router = createRouter({
     history: createWebHashHistory(),

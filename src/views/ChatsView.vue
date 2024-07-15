@@ -70,6 +70,7 @@ button {
   width: 300px;
   height: 80%;
   padding: 3%;
+  box-sizing: border-box;
 }
 
 .container {
@@ -87,6 +88,7 @@ input, button {
   height: 40px;
   padding: 0.5em;
   margin-bottom: 1em;
+  box-sizing: border-box;
 }
 </style>
 
