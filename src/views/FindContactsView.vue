@@ -2,7 +2,6 @@
   <section>
       <br>
     <div class="form">
-    <LoadingComponent/>
     <div class="contact-form">
       <h1>Search Contacts</h1>
         <form @submit.prevent="onSubmit">
@@ -15,6 +14,7 @@
     </div>
   </div>
   </section>
+  <LoadingComponent v-if="isLoading"/>
 </template>
 
 <style scoped>
@@ -67,16 +67,19 @@ export default defineComponent({
       Status: '',
       Message: '',
       name: '',
-      loading: false
+      isLoading: false
     }
   },
   methods: {
     async onSubmit () {
-      this.loading = true
+      this.Message = ''
+      this.Status = ''
       const formData = {
         name: this.name
       }
+      this.isLoading = true
       const contactExists = await getContactsByName(this.name)
+      this.isLoading = false
       if (contactExists === undefined) {
         this.Message = 'Contact does not exist'
         this.Status = '404'

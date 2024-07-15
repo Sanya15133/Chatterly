@@ -65,12 +65,13 @@ export default defineComponent({
     }
   },
   methods: {
-    onSubmit () {
+    async onSubmit () {
       const formData = {
         name: this.name,
         password: this.password
       }
-      const verifyFormData = signInContact(this.name, this.password)
+      const verifyFormData = await signInContact(this.name, this.password)
+      // this.$emit('user-logged-in', user)
       console.log(verifyFormData)
     }
   }

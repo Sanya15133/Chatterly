@@ -37,8 +37,11 @@ export default defineComponent({
   name: 'LoadingPage',
   data () {
     return {
-      loading: true
+      isLoading: false
     }
+  },
+  props: {
+    loading: Boolean
   }
 })
 </script>
