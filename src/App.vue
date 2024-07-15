@@ -8,37 +8,7 @@
     <router-link to="/contacts/:name">Contact Profile</router-link>
   </nav>
   <router-view />
-  <!-- <LogInView @user-logged-in="updateUser" />
-  <RegisterView @user-update="updateUser" /> -->
 </template>
-
-<script lang="ts">
-import { defineComponent } from 'vue'
-import LogInView from './views/LogInView.vue'
-import RegisterView from './views/RegisterView.vue'
-
-export default defineComponent({
-  name: 'logged-in-user',
-  // components: {
-  //   LogInView, RegisterView
-  // },
-  data () {
-    return {
-      name: ''
-    }
-  },
-  methods: {
-    async updateUser (user: string) {
-      this.name = user
-    }
-  },
-  provide () {
-    return {
-      name: this.name
-    }
-  }
-})
-</script>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Baskervville+SC&family=Ysabeau:ital,wght@0,1..1000;1,1..1000&display=swap');
