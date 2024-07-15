@@ -1,5 +1,4 @@
 <template>
-    <section>
       <br>
       <br>
     <div class="form">
@@ -14,7 +13,9 @@
          <button type="submit">Sign In</button>
         </form>
     </div>
-    </section>
+    <br>
+    <ErrorComponent v-if="Message" :Status="Status" :Message="Message" />
+    <LoadingComponent v-if="isLoading"/>
 </template>
 
 <style scoped>
@@ -55,24 +56,58 @@ button {
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { signInContact } from '@/api'
+import ErrorComponent from '@/components/ErrorComponent.vue'
+import LoadingComponent from '@/components/LoadingComponent.vue'
+import router from '@/router'
+import bcrypt from 'bcrypt'
 
 export default defineComponent({
   name: 'LoginForm',
+  components: {
+    ErrorComponent, LoadingComponent
+  },
   data () {
     return {
       name: '',
-      password: ''
+      password: '',
+      Status: '',
+      Message: '',
+      isLoading: false
     }
   },
   methods: {
     async onSubmit () {
+      this.Message = ''
+      this.Status = ''
+      this.isLoading = true
       const formData = {
         name: this.name,
         password: this.password
       }
-      const verifyFormData = await signInContact(formData.name, formData.password)
-      // this.$emit('user-logged-in', user)
-      console.log(verifyFormData)
+      try {
+        const verifyFormData = await signInContact(formData.name, formData.password)
+        this.isLoading = false
+        if (verifyFormData.name !== formData.name && bcrypt.checkpw(verifyFormData.password, formData.password)) {
+          this.Message = 'User not found'
+          this.Status = '404'
+          router.push({ path: '/register' })
+        } else {
+          this.$router.push({
+            name: 'PortalView',
+            params: {
+              name: verifyFormData.user.name
+            },
+            query: {
+              avatar: verifyFormData.user.avatar
+            }
+          })
+        }
+      } catch (error) {
+        console.error('error logging in:', error)
+        this.Message = 'Server error'
+        this.Status = '500'
+        this.isLoading = false
+      }
     }
   }
 })
