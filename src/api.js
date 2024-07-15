@@ -6,6 +6,7 @@ export const getContacts = async () => {
     }
     catch (error) {
         console.error('An error occurred:', error);
+        throw error;
     }
 };
 export const getContactsByName = async (name) => {
@@ -17,6 +18,7 @@ export const getContactsByName = async (name) => {
     }
     catch (error) {
         console.error('An error occurred:', error);
+        throw error;
     }
 };
 export const postContact = async (name, email, password, avatar) => {
@@ -45,6 +47,7 @@ export const getChats = async () => {
     }
     catch (error) {
         console.error('An error occurred:', error);
+        throw error;
     }
 };
 export const getChatsByName = async (name) => {
@@ -55,6 +58,7 @@ export const getChatsByName = async (name) => {
     }
     catch (error) {
         console.error('An error occurred:', error);
+        throw error;
     }
 };
 export const postChats = async (name, message, date) => {
@@ -71,6 +75,7 @@ export const postChats = async (name, message, date) => {
     }
     catch (error) {
         console.error('An error occurred:', error);
+        throw error;
     }
 };
 export const signInContact = async (name, password) => {
@@ -87,5 +92,6 @@ export const signInContact = async (name, password) => {
     }
     catch (error) {
         console.error('An error occurred:', error);
+        throw error;
     }
 };
