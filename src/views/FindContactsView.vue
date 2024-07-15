@@ -5,7 +5,7 @@
     <div class="contact-form">
       <h1>Search Contacts</h1>
         <form @submit.prevent="onSubmit">
-        <label>Contact Name</label><input v-model="name" type="text" />
+        <label>Contact Name</label><input v-model="name" type="text" required/>
         <ErrorComponent v-if="Message" :Status="Status" :Message="Message" />
         <br/>
         <button type="submit">Find Contact</button>
@@ -83,6 +83,10 @@ export default defineComponent({
       if (contactExists === undefined) {
         this.Message = 'Contact does not exist'
         this.Status = '404'
+      } else if (contactExists !== undefined) {
+        this.Message = ''
+        this.Status = ''
+        console.log(contactExists)
       }
     }
   }
