@@ -33,6 +33,7 @@ export const postContact = async (name: string, email: string, password: string,
     return body
   } catch (error) {
     console.error('An error occurred:', error)
+    throw error
   }
 }
 

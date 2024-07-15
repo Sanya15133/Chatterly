@@ -34,6 +34,7 @@ export const postContact = async (name, email, password, avatar) => {
     }
     catch (error) {
         console.error('An error occurred:', error);
+        throw error;
     }
 };
 export const getChats = async () => {

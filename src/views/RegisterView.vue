@@ -3,7 +3,7 @@
     <br>
     <br>
   <div class="form">
-      <form @submit.prevent="onSubmit">
+      <form @submit.prevent="onSubmit" id="form">
         <h1>Register</h1>
         <label>Name</label>
         <input v-model="name" type="text" placeholder="name" required>
@@ -25,6 +25,7 @@
       </form>
   </div>
   </section>
+  <LoadingComponent v-if="isLoading"/>
 </template>
 
 <style scoped>
@@ -64,11 +65,17 @@ button {
 import { postContact } from '@/api'
 import { defineComponent } from 'vue'
 import ErrorComponent from '@/components/ErrorComponent.vue'
+import LoadingComponent from '../components/LoadingComponent.vue'
+import router from '@/router'
 
 export default defineComponent({
   name: 'RegisterForm',
   components: {
-    ErrorComponent
+    ErrorComponent, LoadingComponent
+  },
+  props: {
+    localname: String,
+    localavatar: String
   },
   data () {
     return {
@@ -78,19 +85,33 @@ export default defineComponent({
       confirmation: '',
       avatar: '',
       Status: '',
-      Message: ''
+      Message: '',
+      isLoading: false
     }
   },
   methods: {
     async onSubmit () {
       this.Message = ''
       this.Status = ''
+      this.isLoading = true
       const formData = {
         name: this.name,
         email: this.email,
         password: this.password,
         confirmation: this.confirmation,
         avatar: this.avatar
+      }
+      if (formData.name.length < 5) {
+        this.Message = 'Name field should contain more than four letters'
+        this.Status = '400'
+      }
+      if (formData.password.length < 5) {
+        this.Message = 'Password field should contain more than four letters'
+        this.Status = '400'
+      }
+      if (formData.password !== formData.confirmation) {
+        this.Message = 'Passwords should match'
+        this.Status = '400'
       }
       const regex = /^[A-Z][a-zA-Z]+$/
       const result = regex.test(formData.name)
@@ -104,9 +125,26 @@ export default defineComponent({
         this.Message = 'Email field should contain an email address'
         this.Status = '400'
       }
-      const registerUser = await postContact(formData.name, formData.email, formData.password, formData.avatar)
-      console.log(registerUser)
+      try {
+        const registerUser = await postContact(formData.name, formData.email, formData.password, formData.avatar)
+        this.isLoading = false
+        this.$router.push({
+          name: 'PortalView',
+          params: {
+            name: registerUser.user.name
+          },
+          query: {
+            avatar: registerUser.user.avatar
+          }
+        })
+      } catch (error) {
+        this.Message = 'User already exists, redirecting you to login page'
+        this.Status = '400'
+        this.isLoading = false
+        router.push({ path: '/login' })
+      }
     }
   }
 })
+
 </script>
