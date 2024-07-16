@@ -5,9 +5,9 @@
     <img v-if="avatarUrl" :src="avatarUrl" alt="Profile Avatar">
   <div class="form">
     <h2>View</h2>
-    <p>Click on the button below to view contacts</p>
+    <p>Click on the button below to find contacts</p>
     <button @click="$router.push('contacts')">Contacts</button>
-    <p>Click on the button below to view messages</p>
+    <p>Click on the button below to find messages</p>
     <button @click="$router.push('chats')">Messages</button>
   </div>
   </div>
