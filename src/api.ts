@@ -2,6 +2,7 @@ export const getContacts = async () => {
   try {
     const response = await fetch('https://chatterly-be.onrender.com/users')
     const body = response.json()
+    console.log(body)
     return body
   } catch (error) {
     console.error('An error occurred:', error)

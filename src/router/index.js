@@ -31,7 +31,8 @@ const routes = [
     {
         path: '/all-contacts',
         name: 'ContactList',
-        component: ContactsList
+        component: ContactsList,
+        props: true
     },
     {
         path: '/contacts/:name',

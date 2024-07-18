@@ -32,7 +32,8 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/all-contacts',
     name: 'ContactList',
-    component: ContactsList
+    component: ContactsList,
+    props: true
   },
   {
     path: '/contacts/:name',

@@ -1,9 +1,9 @@
 <template>
     <div class="container">
         <h1>Contacts</h1>
-        <div class="contact-box">
+        <div class="form" @submit.prevent="onSubmit">
             <h2></h2>
-            <button>
+            <button type="submit">
                 View messages
             </button>
         </div>
@@ -26,6 +26,7 @@
   }
 </style>
 <script lang="ts">
+import { getContacts } from '@/api'
 import ErrorComponent from '@/components/ErrorComponent.vue'
 import LoadingComponent from '@/components/LoadingComponent.vue'
 import { defineComponent } from 'vue'
@@ -34,6 +35,9 @@ export default defineComponent({
   name: 'ContactList',
   components: {
     ErrorComponent, LoadingComponent
+  },
+  props: {
+    localname: String
   },
   data () {
     return {
@@ -51,6 +55,16 @@ export default defineComponent({
       this.isLoading = true
       const requestData = {
         name: this.name
+      }
+      try {
+        const getAllContacts = await getContacts()
+        this.isLoading = false
+        console.log(getAllContacts)
+      } catch (error) {
+        console.error('Error fetching contact:', error)
+        this.Message = 'Error fetching contact'
+        this.Status = '500'
+        this.isLoading = false
       }
     }
   }
