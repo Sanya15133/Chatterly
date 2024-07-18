@@ -1,15 +1,18 @@
 <template>
-    <div class="container">
-        <h1>Contacts</h1>
-        <div class="form" @submit.prevent="onSubmit">
-            <h2></h2>
-            <button type="submit">
-                View messages
-            </button>
-        </div>
-        <ErrorComponent v-if="Message" :Status="Status" :Message="Message" />
-    </div>
+  <div class="container">
+    <h1>Contacts</h1>
     <LoadingComponent v-if="isLoading"/>
+    <ErrorComponent v-if="Message" :Status="Status" :Message="Message" />
+    <div v-else class="form">
+      <div v-for="(item, index) in data.users" :key="index">
+        <h2>{{ item.name }}</h2>
+        <img v-if="item.avatar" :src="item.avatar" alt="Profile Avatar">
+        <button type="submit">
+        Start a conversation
+      </button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style>
@@ -41,31 +44,27 @@ export default defineComponent({
   },
   data () {
     return {
-      name: '',
+      data: [],
       Status: '',
       Message: '',
       isLoading: false
     }
   },
-  methods: {
-    async onSubmit () {
-      this.Message = ''
-      this.Status = ''
-      this.name = ''
-      this.isLoading = true
-      const requestData = {
-        name: this.name
-      }
-      try {
-        const getAllContacts = await getContacts()
-        this.isLoading = false
-        console.log(getAllContacts)
-      } catch (error) {
-        console.error('Error fetching contact:', error)
-        this.Message = 'Error fetching contact'
-        this.Status = '500'
-        this.isLoading = false
-      }
+  async mounted () {
+    this.data = []
+    this.Message = ''
+    this.Status = ''
+    this.isLoading = true
+    try {
+      const getAllContacts = await getContacts()
+      this.data = getAllContacts
+      this.isLoading = false
+      console.log(getAllContacts)
+    } catch (error) {
+      console.error('Error fetching contact:', error)
+      this.Message = 'Error fetching contact'
+      this.Status = '500'
+      this.isLoading = false
     }
   }
 })
