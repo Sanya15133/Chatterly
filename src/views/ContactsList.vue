@@ -4,7 +4,7 @@
     <LoadingComponent v-if="isLoading"/>
     <ErrorComponent v-if="Message" :Status="Status" :Message="Message" />
     <div v-else class="form">
-      <div v-for="(item, index) in data.users" :key="index">
+      <div v-for="(item, index) in data.users" :key="index" class="card">
         <h2>{{ item.name }}</h2>
         <img v-if="item.avatar" :src="item.avatar" alt="Profile Avatar">
         <button type="submit">
@@ -27,6 +27,27 @@
     background-color: rgb(241, 240, 231);
     border-radius: 5%;
   }
+
+  .card {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 2px solid grey;
+  border-radius: 2%;
+  background-color: antiquewhite;
+  padding: 5%;
+}
+
+img {
+  background-color: rgb(230, 228, 233);
+  border: 2px solid grey;
+  border-radius: 10%;
+  width: 60%;
+  height: 60%;
+  justify-content: center;
+  display: inline-block;
+}
 </style>
 <script lang="ts">
 import { getContacts } from '@/api'
@@ -59,7 +80,6 @@ export default defineComponent({
       const getAllContacts = await getContacts()
       this.data = getAllContacts
       this.isLoading = false
-      console.log(getAllContacts)
     } catch (error) {
       console.error('Error fetching contact:', error)
       this.Message = 'Error fetching contact'
