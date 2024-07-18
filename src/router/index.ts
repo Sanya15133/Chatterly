@@ -5,6 +5,7 @@ import LoginView from '../views/LogInView.vue'
 import PortalView from '../views/PortalView.vue'
 import ContactProfileView from '../views/ContactProfileView.vue'
 import ChatsView from '@/views/ChatsView.vue'
+import ContactsList from '../views/ContactsList.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -27,6 +28,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'ContactsList',
     component: FindContactsView,
     props: true
+  },
+  {
+    path: '/all-contacts',
+    name: 'ContactList',
+    component: ContactsList
   },
   {
     path: '/contacts/:name',
