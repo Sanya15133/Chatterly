@@ -10,6 +10,7 @@
         <button type="submit">
         Start a conversation
       </button>
+      <br>
       </div>
     </div>
   </div>
@@ -24,7 +25,6 @@
     width: 300px;
     height: 80%;
     padding: 3%;
-    background-color: rgb(241, 240, 231);
     border-radius: 5%;
   }
 
@@ -35,16 +35,13 @@
   text-align: center;
   border: 2px solid grey;
   border-radius: 2%;
-  background-color: antiquewhite;
+  background-color: rgb(247, 237, 237);
   padding: 5%;
 }
 
 img {
-  background-color: rgb(230, 228, 233);
   border: 2px solid grey;
   border-radius: 10%;
-  width: 60%;
-  height: 60%;
   justify-content: center;
   display: inline-block;
 }
@@ -54,6 +51,16 @@ import { getContacts } from '@/api'
 import ErrorComponent from '@/components/ErrorComponent.vue'
 import LoadingComponent from '@/components/LoadingComponent.vue'
 import { defineComponent } from 'vue'
+
+type User = {
+  id: number;
+  name: string;
+  avatar: string;
+};
+
+interface Data {
+  users: User[];
+}
 
 export default defineComponent({
   name: 'ContactList',
@@ -65,14 +72,15 @@ export default defineComponent({
   },
   data () {
     return {
-      data: [],
+      data: {
+        users: [] as User[]
+      } as Data,
       Status: '',
       Message: '',
       isLoading: false
     }
   },
   async mounted () {
-    this.data = []
     this.Message = ''
     this.Status = ''
     this.isLoading = true
