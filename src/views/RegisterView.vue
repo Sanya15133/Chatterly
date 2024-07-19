@@ -6,20 +6,20 @@
       <form @submit.prevent="onSubmit" id="form">
         <h1>Register</h1>
         <label>Name</label>
-        <input v-model="name" type="text" placeholder="name" required>
+        <input v-model="User.name" type="text" placeholder="name" required>
         <ErrorComponent v-if="Message" :Status="Status" :Message="Message" />
         <br>
         <label>Email</label>
-        <input v-model="email" type="text" placeholder="email" required>
+        <input v-model="User.email" type="text" placeholder="email" required>
         <br>
         <label>Password</label>
-        <input v-model="password" type="password" required placeholder="password">
+        <input v-model="User.password" type="password" required placeholder="password">
         <br>
         <label>Confirm Password</label>
         <input v-model="confirmation" type="password" required placeholder="confirmation">
         <br>
         <label>Choose Avatar</label>
-        <input v-model="avatar" type="text" placeholder="avatar">
+        <input v-model="User.avatar" type="text" placeholder="avatar">
         <p><router-link to="/login">Sign In</router-link> </p>
         <button type="submit">Register</button>
       </form>
@@ -68,6 +68,14 @@ import ErrorComponent from '@/components/ErrorComponent.vue'
 import LoadingComponent from '../components/LoadingComponent.vue'
 import router from '@/router'
 
+type User = {
+  id: number;
+  name: string;
+  avatar: string;
+  email: string;
+  password: string
+};
+
 export default defineComponent({
   name: 'RegisterForm',
   components: {
@@ -79,11 +87,8 @@ export default defineComponent({
   },
   data () {
     return {
-      name: '',
-      email: '',
-      password: '',
+      User: {} as User,
       confirmation: '',
-      avatar: '',
       Status: '',
       Message: '',
       isLoading: false
@@ -94,39 +99,32 @@ export default defineComponent({
       this.Message = ''
       this.Status = ''
       this.isLoading = true
-      const formData = {
-        name: this.name,
-        email: this.email,
-        password: this.password,
-        confirmation: this.confirmation,
-        avatar: this.avatar
-      }
-      if (formData.name.length < 5) {
+      if (this.User.name.length < 5) {
         this.Message = 'Name field should contain more than four letters'
         this.Status = '400'
       }
-      if (formData.password.length < 5) {
+      if (this.User.password.length < 5) {
         this.Message = 'Password field should contain more than four letters'
         this.Status = '400'
       }
-      if (formData.password !== formData.confirmation) {
+      if (this.User.password !== this.confirmation) {
         this.Message = 'Passwords should match'
         this.Status = '400'
       }
       const regex = /^[A-Z][a-zA-Z]+$/
-      const result = regex.test(formData.name)
+      const result = regex.test(this.User.name)
       if (result === false) {
         this.Message = 'Name field should contain one uppercase letter'
         this.Status = '400'
       }
       const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/
-      const emailResult = emailRegex.test(formData.email)
+      const emailResult = emailRegex.test(this.User.email)
       if (emailResult === false) {
         this.Message = 'Email field should contain an email address'
         this.Status = '400'
       }
       try {
-        const registerUser = await postContact(formData.name, formData.email, formData.password, formData.avatar)
+        const registerUser = await postContact(this.User.name, this.User.email, this.User.password, this.User.avatar)
         this.isLoading = false
         this.$router.push({
           name: 'PortalView',
