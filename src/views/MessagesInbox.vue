@@ -13,27 +13,23 @@
 </template>
 
 <style>
-
 .container {
-  display: inline-block;
-  justify-content: center;
-  align-items: center;
-  text-align: left;
-  width: 300px;
-  height: 80%;
-  padding: 3%;
+  display: block;
   border-radius: 5%;
 }
 
 .form {
-  display: inline-block;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  display: block;
   border: 2px solid grey;
   border-radius: 2%;
   background-color: rgb(247, 237, 237);
   padding: 5%;
+  border: none;
+  justify-content: left;
+  align-items: left;
+  text-align: left;
+  width: 100%;
+  height: 40%;
 }
 
 </style>
