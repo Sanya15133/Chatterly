@@ -25,7 +25,8 @@
   text-align: center;
   width: 300px;
   height: 250px;
-  padding: 3%
+  padding: 3%;
+  border: none
 }
 
 form {

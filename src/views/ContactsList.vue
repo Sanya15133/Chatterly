@@ -26,6 +26,7 @@
     height: 80%;
     padding: 3%;
     border-radius: 5%;
+    border: none
   }
 
   .card {
@@ -33,14 +34,14 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  border: 2px solid grey;
+  border: 1px solid lightgrey;
   border-radius: 2%;
   background-color: rgb(247, 237, 237);
   padding: 5%;
 }
 
 img {
-  border: 2px solid grey;
+  border: 1px solid lightgrey;
   border-radius: 10%;
   justify-content: center;
   display: inline-block;

@@ -6,6 +6,7 @@ import PortalView from '../views/PortalView.vue';
 import ContactProfileView from '../views/ContactProfileView.vue';
 import ChatsView from '@/views/ChatsView.vue';
 import ContactsList from '../views/ContactsList.vue';
+import MessagesInbox from '@/views/MessagesInbox.vue';
 const routes = [
     {
         path: '/',
@@ -44,6 +45,12 @@ const routes = [
         path: '/chats/:name',
         name: 'ChatsView',
         component: ChatsView,
+        props: true
+    },
+    {
+        path: '/chats',
+        name: 'MessagesInbox',
+        component: MessagesInbox,
         props: true
     }
     // {

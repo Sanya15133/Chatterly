@@ -13,11 +13,11 @@
   </div>
 <br>
 <form class="container" @submit.prevent="onSubmit">
-      <label for="messageInput"></label>
-      <input id="messageInput" v-model="message" type="text" placeholder="Message"/>
-      <button type="submit">Send</button>
-      <br />
-    </form>
+    <label for="messageInput"></label>
+    <input id="messageInput" v-model="message" type="text" placeholder="Message" required/>
+    <button type="submit">Send</button>
+    <br />
+</form>
 </div>
 </template>
 
@@ -46,21 +46,16 @@
   background-image: url('https://img.freepik.com/premium-photo/embossed-paper-texture-patternlight-bacground_546139-39.jpg')
 }
 
-label {
-  display: block;
-  margin: 0.5em 0 0.2em;
-}
-
 input {
   flex-shrink: 1;
   box-sizing: border-box;
-  width: 80%;
+  width: 200px;
 }
 
 button {
   cursor: pointer;
-  display: block;
-  margin-left: 10px;
+  display: inline-block;
+  margin-left: 10px
 }
 .form {
   display: inline-block;
@@ -71,14 +66,17 @@ button {
   height: 80%;
   padding: 3%;
   box-sizing: border-box;
+  border: none
 }
 
 .container {
-  display: flex;
-  justify-content: space-between;
+  display: inline-flex;
   box-sizing: border-box;
-  flex-shrink: 1;
+  width: 10%;
+  text-align: left;
+  justify-content: left;
 }
+
 .user-detail {
   display: flex;
   justify-content: space-between;
@@ -88,7 +86,6 @@ input, button {
   height: 40px;
   padding: 0.5em;
   margin-bottom: 1em;
-  box-sizing: border-box;
 }
 </style>
 

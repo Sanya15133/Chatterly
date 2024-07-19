@@ -29,6 +29,7 @@
   padding: 3%;
   margin-left: auto;
   margin-right: auto;
+  border: none
 }
 
 form {

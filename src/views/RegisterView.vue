@@ -3,7 +3,7 @@
     <br>
     <br>
   <div class="form">
-      <form @submit.prevent="onSubmit" id="form">
+      <form @submit.prevent="onSubmit">
         <h1>Register</h1>
         <label>Name</label>
         <input v-model="User.name" type="text" placeholder="name" required>
@@ -36,11 +36,14 @@
   text-align: center;
   width: 300px;
   height: 90%;
-  padding: 3%
+  padding: 3%;
+  border: none
 }
 
 form {
+  justify-content: center;
   display: inline-block;
+  align-items: center;
 }
 
 label {
@@ -48,11 +51,23 @@ label {
   margin: 0.5em 0 0.2em;
 }
 
+/* .container {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  width: 300px;
+  height: 80%;
+  padding: 3%;
+  border-radius: 5%;
+} */
+
 input {
   width: 100%;
   padding: 0.5em;
   margin-bottom: 1em;
   box-sizing: border-box;
+  outline: none;
 }
 
 button {

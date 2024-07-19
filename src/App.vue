@@ -7,6 +7,7 @@
     <router-link to="/portal">Portal</router-link>
     <router-link to="/contacts/:name">Contact Profile</router-link>
     <router-link to="/all-contacts">All Contacts</router-link>
+    <router-link to="/chats">Inbox</router-link>
   </nav>
   <router-view />
 </template>
@@ -16,7 +17,6 @@
 
 #app {
   text-align: center;
-  color: #2c3e50;
 }
 
 nav {
@@ -39,6 +39,7 @@ body {
 .form {
   background-color: rgb(241, 240, 231);
   border-radius: 5%;
+  border: none
 }
 
 h1 {
