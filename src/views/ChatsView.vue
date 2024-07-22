@@ -2,7 +2,7 @@
   <div class="form">
     <h1>Messages</h1>
     <div class="name-outline">
-    <img><p></p>
+    <img><p>{{ localname }}</p>
   </div>
   <br>
   <div class="outline">
@@ -17,8 +17,10 @@
     <input id="messageInput" v-model="message" type="text" placeholder="Message" required/>
     <button type="submit">Send</button>
     <br />
+    <ErrorComponent v-if="Message" :Status="Status" :Message="Message" />
 </form>
 </div>
+<LoadingComponent v-if="isLoading"/>
 </template>
 
 <style scoped>
@@ -92,14 +94,27 @@ input, button {
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { connectToSocket } from '../websocket'
+import ErrorComponent from '../components/ErrorComponent.vue'
+import LoadingComponent from '../components/LoadingComponent.vue'
+import { getChatsByName } from '@/api'
 
 export default defineComponent({
   name: 'ChatsView',
+  components: {
+    ErrorComponent, LoadingComponent
+  },
+  props: {
+    localname: String,
+    avatar: String
+  },
   data () {
     return {
       name: '',
       message: '',
+      Message: '',
+      Status: '',
       date: new Date(),
+      isLoading: false,
       connection: connectToSocket()
     }
   },
@@ -124,11 +139,23 @@ export default defineComponent({
     }
   },
   methods: {
-    onSubmit () {
+    async onSubmit () {
       this.connection.send(this.message)
       document.getElementById('message-area')?.append(this.message)
       this.message = ''
       document.getElementById('time')?.append(new Date().toLocaleTimeString())
+      try {
+        this.Message = ''
+        this.Status = ''
+        this.isLoading = true
+        const getChatsByLocalName = await getChatsByName(this.name)
+        console.log(getChatsByLocalName)
+      } catch (error) {
+        console.error('Error fetching contact:', error)
+        this.Message = 'Error fetching contact'
+        this.Status = '500'
+        this.isLoading = false
+      }
     }
   }
 })

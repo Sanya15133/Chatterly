@@ -26,8 +26,7 @@ const routes = [
     {
         path: '/contacts',
         name: 'ContactsList',
-        component: FindContactsView,
-        props: true
+        component: FindContactsView
     },
     {
         path: '/all-contacts',

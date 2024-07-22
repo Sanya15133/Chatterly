@@ -27,8 +27,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/contacts',
     name: 'ContactsList',
-    component: FindContactsView,
-    props: true
+    component: FindContactsView
   },
   {
     path: '/all-contacts',
