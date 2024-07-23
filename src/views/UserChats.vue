@@ -6,10 +6,11 @@
       <p v-if="name" class="name">{{ name }}</p>
     </div>
     <br>
-    <div class="outline">
-      <div class="msg-box">
-      <p id="message-area"></p>
-      <p id="time"></p>
+    <ErrorComponent v-if="Message" :Status="Status" :Message="Message" />
+    <div v-else class="outline">
+      <div v-for="(item, index) in data.chats" :key="index" class="msg-box">
+      <p id="message-area">{{ item.message }}</p>
+      <p id="time">{{ item.date }}</p>
     </div>
     </div>
   <br>
@@ -18,7 +19,6 @@
       <input id="messageInput" v-model="contactMessage" type="text" placeholder="Message" required/>
       <button type="submit">Send</button>
       <br />
-      <ErrorComponent v-if="Message" :Status="Status" :Message="Message" />
   </form>
   </div>
   <LoadingComponent v-if="isLoading"/>
@@ -26,13 +26,13 @@
 
   <style scoped>
   .name-outline {
-    display: flex;
-    border: 1px solid lightgray;
-    height: 5vh;
-    padding: 1%;
-    text-align: right;
-    background-color: white !important;
-    align-items: center
+  display: flex;
+  border: 1px solid lightgray;
+  height: 5vh;
+  padding: 1%;
+  text-align: right;
+  background-color: white !important;
+  align-items: center
   }
 
   img {
@@ -51,60 +51,63 @@
   }
 
   .msg-box {
-    display: block;
-    border: 1px solid lightgray;
-    padding: 1%;
-    margin: 3%;
-    background-color: white
+  display: block;
+  border: 1px solid lightgray;
+  padding: 1%;
+  margin: 3%;
+  background-color: white;
   }
 
   .outline {
-    display: block;
-    border: 1px solid lightgray;
-    height: 50vh;
-    background-image: url('https://img.freepik.com/premium-photo/embossed-paper-texture-patternlight-bacground_546139-39.jpg')
+  display: block;
+  border: 1px solid lightgray;
+  overflow: auto;
+  height: 50vh;
+  background-image: url('https://img.freepik.com/premium-photo/embossed-paper-texture-patternlight-bacground_546139-39.jpg')
   }
 
   input {
-    flex-shrink: 1;
-    box-sizing: border-box;
-    width: 200px;
+  flex-shrink: 1;
+  box-sizing: border-box;
+  width: 200px;
   }
 
   button {
-    cursor: pointer;
-    display: inline-block;
-    margin-left: 10px
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 10px
   }
+
   .form {
-    display: inline-block;
-    justify-content: center;
-    align-items: center;
-    text-align: left;
-    width: 300px;
-    height: 80%;
-    padding: 3%;
-    box-sizing: border-box;
-    border: none
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  width: 300px;
+  height: 80%;
+  padding: 3%;
+  box-sizing: border-box;
+  border: none
   }
 
   .container {
-    display: inline-flex;
-    box-sizing: border-box;
-    width: 10%;
-    text-align: left;
-    justify-content: left;
+  display: inline-flex;
+  box-sizing: border-box;
+  width: 10%;
+  text-align: left;
+  justify-content: left;
   }
 
   .user-detail {
-    display: inline-flex;
-    justify-content: space-between;
-    text-align: left;
+  display: inline-flex;
+  justify-content: space-between;
+  text-align: left;
   }
+
   input, button {
-    height: 40px;
-    padding: 0.5em;
-    margin-bottom: 1em;
+  height: 40px;
+  padding: 0.5em;
+  margin-bottom: 1em;
   }
   </style>
 
@@ -114,6 +117,17 @@ import { connectToSocket } from '../websocket'
 import ErrorComponent from '../components/ErrorComponent.vue'
 import LoadingComponent from '../components/LoadingComponent.vue'
 import { getChatsByName } from '@/api'
+
+type Chat = {
+  id: number,
+  name: string,
+  message: string,
+  date: string
+}
+
+interface Data {
+  chats: Chat[];
+}
 
 export default defineComponent({
   name: 'UserChats',
@@ -130,6 +144,9 @@ export default defineComponent({
   },
   data () {
     return {
+      data: {
+        chats: [] as Chat[]
+      } as Data,
       contactName: '',
       contactMessage: '',
       Message: '',
@@ -139,7 +156,11 @@ export default defineComponent({
       connection: connectToSocket()
     }
   },
-  mounted () {
+  async mounted () {
+    const getChatsByLocalName = await getChatsByName(this.contactName)
+    this.data = getChatsByLocalName
+    this.isLoading = false
+
     if (this.connection) {
       console.log('WebSocket created')
     } else {
@@ -168,8 +189,6 @@ export default defineComponent({
         this.Message = ''
         this.Status = ''
         this.isLoading = true
-        const getChatsByLocalName = await getChatsByName(this.contactName)
-        console.log(getChatsByLocalName)
       } catch (error) {
         console.error('Error fetching contact:', error)
         this.Message = 'Error fetching contact'
