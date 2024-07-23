@@ -3,7 +3,7 @@
       <h1>Messages</h1>
       <div id="name-outline">
       <p v-if="name" class="name">{{ name }}</p>
-      <img v-if="avatar" :src="avatar" alt="User-Avatar" />
+      <img v-if="avatarValue" :src="avatarValue" alt="User-Avatar" />
     </div>
     <br>
     <div class="outline">
@@ -124,6 +124,11 @@ export default defineComponent({
   props: {
     name: String
   },
+  computed: {
+    avatarValue (): string | undefined {
+      return this.$route.query.avatar as string | undefined
+    }
+  },
   data () {
     return {
       contactName: '',
@@ -132,7 +137,6 @@ export default defineComponent({
       Status: '',
       date: new Date(),
       isLoading: false,
-      avatar: this.$route.query.avatar,
       connection: connectToSocket()
     }
   },
