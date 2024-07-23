@@ -2,8 +2,8 @@
   <div class="form">
     <h1>Messages</h1>
     <div class="name-outline">
-      <img src="$route.query.avatar" alt="user-avatar" v-if="$route.query.avatar" />
-    <p v-if="$route.params.name">{{ $route.params.name }}</p>
+      <img/>
+    <p>{{ contactName }}</p>
   </div>
   <br>
   <div class="outline">
@@ -97,7 +97,7 @@ import { defineComponent } from 'vue'
 import { connectToSocket } from '../websocket'
 import ErrorComponent from '../components/ErrorComponent.vue'
 import LoadingComponent from '../components/LoadingComponent.vue'
-import { getChatsByName } from '@/api'
+import { postChats } from '@/api'
 
 export default defineComponent({
   name: 'ChatsView',
@@ -116,9 +116,6 @@ export default defineComponent({
     }
   },
   mounted () {
-    const name = this.$route.params.name
-    const avatar = this.$route.query.avatar
-    console.log(name, avatar)
     if (this.connection) {
       console.log('WebSocket created')
     } else {
@@ -147,8 +144,8 @@ export default defineComponent({
         this.Message = ''
         this.Status = ''
         this.isLoading = true
-        const getChatsByLocalName = await getChatsByName(this.contactName)
-        console.log(getChatsByLocalName)
+        const postConvos = await postChats(this.contactName, this.contactMessage, this.date)
+        console.log(postConvos)
       } catch (error) {
         console.error('Error fetching contact:', error)
         this.Message = 'Error fetching contact'

@@ -7,6 +7,7 @@ import ContactProfileView from '../views/ContactProfileView.vue';
 import ChatsView from '@/views/ChatsView.vue';
 import ContactsList from '../views/ContactsList.vue';
 import MessagesInbox from '@/views/MessagesInbox.vue';
+import UserChats from '../views/UserChats.vue';
 const routes = [
     {
         path: '/',
@@ -41,9 +42,15 @@ const routes = [
         props: true
     },
     {
-        path: '/chats/:name',
+        path: '/chats',
         name: 'ChatsView',
         component: ChatsView,
+        props: true
+    },
+    {
+        path: '/chats/:name',
+        name: 'UserChats',
+        component: UserChats,
         props: true
     },
     {

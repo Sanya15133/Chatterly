@@ -1,7 +1,11 @@
+<script lang="ts">
+
+</script>
+
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <!-- <router-link to="/chats">Chats</router-link> -->
+    <router-link to="/chats">Chats</router-link>
     <!-- <router-link to="/contacts">Find Contacts</router-link> -->
     <router-link to="/login">Sign In</router-link>
     <router-link to="/portal">Portal</router-link>

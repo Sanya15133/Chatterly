@@ -62,7 +62,7 @@ export const getChatsByName = async (name: string) => {
   }
 }
 
-export const postChats = async (name: string, message: string, date: string) => {
+export const postChats = async (name: string, message: string, date: Date) => {
   try {
     const response = await fetch('https://chatterly-be.onrender.com/chats', {
       method: 'POST',

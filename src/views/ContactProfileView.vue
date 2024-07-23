@@ -47,19 +47,6 @@ export default defineComponent({
     avatarUrl (): string | undefined {
       return this.$route.query.avatar as string | undefined
     }
-  },
-  methods: {
-    onSubmit () {
-      this.$router.push({
-        name: 'ChatsView',
-        params: {
-          name: this.name
-        },
-        query: {
-          avatar: this.avatarUrl
-        }
-      })
-    }
   }
 })
 
