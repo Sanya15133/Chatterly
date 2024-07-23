@@ -1,9 +1,9 @@
 <template>
     <div class="form">
       <h1>Messages</h1>
-      <div id="name-outline">
-      <p v-if="name" class="name">{{ name }}</p>
+      <div class="name-outline">
       <img v-if="avatarValue" :src="avatarValue" alt="User-Avatar" />
+      <p v-if="name" class="name">{{ name }}</p>
     </div>
     <br>
     <div class="outline">
@@ -32,7 +32,22 @@
     padding: 1%;
     text-align: right;
     background-color: white !important;
-    align-items: center;
+    align-items: center
+  }
+
+  img {
+  border: 1px solid lightgray;
+  width: 20%;
+  border-radius: 30%;
+  display: inline-block;
+  vertical-align: left;
+  }
+
+  .name {
+  display: inline-block;
+  margin-left: 10px;
+  text-align: right;
+  justify-content: right;
   }
 
   .msg-box {
@@ -81,24 +96,8 @@
     justify-content: left;
   }
 
-  img {
-  border: 1px solid lightgray;
-  height: 20%;
-  width: 20%;
-  border-radius: 30%;
-  display: inline-block;
-  vertical-align: left;
-  }
-
-  .name {
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 10px;
-  text-align: right;
-  }
-
   .user-detail {
-    display: flex;
+    display: inline-flex;
     justify-content: space-between;
     text-align: left;
   }
