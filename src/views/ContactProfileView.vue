@@ -2,10 +2,10 @@
     <div class="container">
       <h1>{{ name }}</h1>
       <img v-if="avatarUrl" :src="avatarUrl" alt="Contact Avatar">
-    <div class="form">
+    <form class="form" @submit.prevent="onSubmit">
       <p>Click on the button below to view messages with {{ name }}</p>
-      <button @click="$router.push(`chats/${name}`)" type="button">Messages</button>
-    </div>
+      <button type="submit">Messages</button>
+    </form>
     </div>
   </template>
   <style>
@@ -42,6 +42,19 @@ export default defineComponent({
   name: 'ContactView',
   props: {
     name: String
+  },
+  methods: {
+    async onSubmit () {
+      this.$router.push({
+        name: 'UserChats',
+        params: {
+          name: this.name
+        },
+        query: {
+          avatar: this.avatarUrl
+        }
+      })
+    }
   },
   computed: {
     avatarUrl (): string | undefined {

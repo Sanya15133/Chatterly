@@ -1,9 +1,9 @@
 <template>
     <div class="form">
       <h1>Messages</h1>
-      <div class="name-outline">
-        <img src="$route.query.avatar" alt="user-avatar" v-if="$route.query.avatar" />
-      <p v-if="$route.params.name">{{ $route.params.name }}</p>
+      <div id="name-outline">
+      <p v-if="name" class="name">{{ name }}</p>
+      <img v-if="avatar" :src="avatar" alt="User-Avatar" />
     </div>
     <br>
     <div class="outline">
@@ -26,12 +26,13 @@
 
   <style scoped>
   .name-outline {
-    display: block;
+    display: flex;
     border: 1px solid lightgray;
     height: 5vh;
     padding: 1%;
-    text-align: left;
-    background-color: white;
+    text-align: right;
+    background-color: white !important;
+    align-items: center;
   }
 
   .msg-box {
@@ -80,6 +81,22 @@
     justify-content: left;
   }
 
+  img {
+  border: 1px solid lightgray;
+  height: 20%;
+  width: 20%;
+  border-radius: 30%;
+  display: inline-block;
+  vertical-align: left;
+  }
+
+  .name {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+  text-align: right;
+  }
+
   .user-detail {
     display: flex;
     justify-content: space-between;
@@ -104,6 +121,9 @@ export default defineComponent({
   components: {
     ErrorComponent, LoadingComponent
   },
+  props: {
+    name: String
+  },
   data () {
     return {
       contactName: '',
@@ -112,13 +132,11 @@ export default defineComponent({
       Status: '',
       date: new Date(),
       isLoading: false,
+      avatar: this.$route.query.avatar,
       connection: connectToSocket()
     }
   },
   mounted () {
-    const name = this.$route.params.name
-    const avatar = this.$route.query.avatar
-    console.log(name, avatar)
     if (this.connection) {
       console.log('WebSocket created')
     } else {
