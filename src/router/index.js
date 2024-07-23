@@ -47,7 +47,7 @@ const routes = [
         props: true
     },
     {
-        path: '/chats',
+        path: '/inbox',
         name: 'MessagesInbox',
         component: MessagesInbox,
         props: true

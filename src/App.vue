@@ -1,13 +1,13 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/chats/:name">Chats</router-link>
-    <router-link to="/contacts">Find Contacts</router-link>
+    <!-- <router-link to="/chats">Chats</router-link> -->
+    <!-- <router-link to="/contacts">Find Contacts</router-link> -->
     <router-link to="/login">Sign In</router-link>
     <router-link to="/portal">Portal</router-link>
-    <router-link to="/contacts/:name">Contact Profile</router-link>
-    <router-link to="/all-contacts">All Contacts</router-link>
-    <router-link to="/chats">Inbox</router-link>
+    <!-- <router-link to="/contacts/:name">Contact Profile</router-link> -->
+    <!-- <router-link to="/all-contacts">All Contacts</router-link> -->
+    <!-- <router-link to="/inbox">Inbox</router-link> -->
   </nav>
   <router-view />
 </template>

@@ -2,7 +2,8 @@
   <div class="form">
     <h1>Messages</h1>
     <div class="name-outline">
-    <img><p>{{ localname }}</p>
+      <img src="$route.query.avatar" alt="user-avatar" v-if="$route.query.avatar" />
+    <p v-if="$route.params.name">{{ $route.params.name }}</p>
   </div>
   <br>
   <div class="outline">
@@ -14,7 +15,7 @@
 <br>
 <form class="container" @submit.prevent="onSubmit">
     <label for="messageInput"></label>
-    <input id="messageInput" v-model="message" type="text" placeholder="Message" required/>
+    <input id="messageInput" v-model="contactMessage" type="text" placeholder="Message" required/>
     <button type="submit">Send</button>
     <br />
     <ErrorComponent v-if="Message" :Status="Status" :Message="Message" />
@@ -103,14 +104,10 @@ export default defineComponent({
   components: {
     ErrorComponent, LoadingComponent
   },
-  props: {
-    localname: String,
-    avatar: String
-  },
   data () {
     return {
-      name: '',
-      message: '',
+      contactName: '',
+      contactMessage: '',
       Message: '',
       Status: '',
       date: new Date(),
@@ -119,7 +116,9 @@ export default defineComponent({
     }
   },
   mounted () {
-    console.log(this.connection)
+    const name = this.$route.params.name
+    const avatar = this.$route.query.avatar
+    console.log(name, avatar)
     if (this.connection) {
       console.log('WebSocket created')
     } else {
@@ -140,15 +139,15 @@ export default defineComponent({
   },
   methods: {
     async onSubmit () {
-      this.connection.send(this.message)
-      document.getElementById('message-area')?.append(this.message)
-      this.message = ''
+      this.connection.send(this.contactMessage)
+      document.getElementById('message-area')?.append(this.contactMessage)
+      this.contactMessage = ''
       document.getElementById('time')?.append(new Date().toLocaleTimeString())
       try {
         this.Message = ''
         this.Status = ''
         this.isLoading = true
-        const getChatsByLocalName = await getChatsByName(this.name)
+        const getChatsByLocalName = await getChatsByName(this.contactName)
         console.log(getChatsByLocalName)
       } catch (error) {
         console.error('Error fetching contact:', error)

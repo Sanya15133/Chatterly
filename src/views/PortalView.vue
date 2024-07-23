@@ -8,7 +8,7 @@
     <p>Click on the button below to find contacts</p>
     <button @click="$router.push('contacts')">Contacts</button>
     <p>Click on the button below to find messages</p>
-    <button @click="$router.push('chats')">Messages</button>
+    <button @click="$router.push('inbox')">Messages</button>
   </div>
   </div>
 </template>

@@ -4,7 +4,7 @@
       <img v-if="avatarUrl" :src="avatarUrl" alt="Contact Avatar">
     <div class="form">
       <p>Click on the button below to view messages with {{ name }}</p>
-      <button @click="$router.push('chats/:name')">Messages</button>
+      <button @click="$router.push(`chats/${name}`)" type="button">Messages</button>
     </div>
     </div>
   </template>
@@ -46,6 +46,19 @@ export default defineComponent({
   computed: {
     avatarUrl (): string | undefined {
       return this.$route.query.avatar as string | undefined
+    }
+  },
+  methods: {
+    onSubmit () {
+      this.$router.push({
+        name: 'ChatsView',
+        params: {
+          name: this.name
+        },
+        query: {
+          avatar: this.avatarUrl
+        }
+      })
     }
   }
 })
