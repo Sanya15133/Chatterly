@@ -92,7 +92,7 @@ export default defineComponent({
         if (verifyFormData.name !== formData.name) {
           this.Message = 'User not found'
           this.Status = '404'
-          router.push({ path: '/register' })
+          router.push({ path: '/' })
         } else {
           this.$router.push({
             name: 'PortalView',
