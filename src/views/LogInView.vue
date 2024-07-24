@@ -94,7 +94,8 @@ export default defineComponent({
           this.Status = '404'
           router.push({ path: '/' })
         } else {
-          if (checkAuth) {
+          const token = localStorage.getItem('token')
+          if (token) {
             this.$router.push({
               name: 'PortalView',
               params: {

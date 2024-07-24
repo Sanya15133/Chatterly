@@ -1,12 +1,19 @@
 import { signInContact } from './api';
 export const authenticateUser = async (name, password) => {
-    const verifyFormData = await signInContact(name, password);
-    if (!verifyFormData.token) {
-        console.error('User has not been authenticated');
-        return false;
+    try {
+        const verifyFormData = await signInContact(name, password);
+        if (!verifyFormData.token) {
+            console.error('User has not been authenticated');
+            return false;
+        }
+        else {
+            console.log('User has been authenticated');
+            localStorage.setItem('token', verifyFormData.token);
+            return true;
+        }
     }
-    else if (verifyFormData.token) {
-        console.log('User has been authenticated');
-        return verifyFormData.token;
+    catch (error) {
+        console.error('An error occurred during authentication', error);
+        return false;
     }
 };
