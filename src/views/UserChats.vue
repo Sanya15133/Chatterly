@@ -160,7 +160,6 @@ export default defineComponent({
     const getChatsByLocalName = await getChatsByName(this.contactName)
     this.data = getChatsByLocalName
     this.isLoading = false
-
     if (this.connection) {
       console.log('WebSocket created')
     } else {

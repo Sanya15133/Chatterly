@@ -7,7 +7,7 @@
       <div v-for="(item, index) in data.users" :key="index" class="card">
         <h2>{{ item.name }}</h2>
         <img v-if="item.avatar" :src="item.avatar" alt="Profile Avatar">
-        <button type="submit">
+        <button @click="$router.push(`/chats/${item.name}`)">
         Start a conversation
       </button>
       <br>

@@ -15,61 +15,88 @@ const routes = [
         component: RegisterView
     },
     {
-        path: '/portal/:name',
-        name: 'PortalView',
-        component: PortalView
-    },
-    {
         path: '/login',
         name: 'LoginForm',
         component: LoginView
     },
     {
+        path: '/portal/:name',
+        name: 'PortalView',
+        component: PortalView,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
         path: '/contacts',
         name: 'ContactsList',
-        component: FindContactsView
+        component: FindContactsView,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/all-contacts',
         name: 'ContactList',
         component: ContactsList,
-        props: true
+        props: true,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/contacts/:name',
         name: 'ContactView',
         component: ContactProfileView,
-        props: true
+        props: true,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/chats',
         name: 'ChatsView',
         component: ChatsView,
-        props: true
+        props: true,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/chats/:name',
         name: 'UserChats',
         component: UserChats,
-        props: true
+        props: true,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/inbox',
         name: 'MessagesInbox',
         component: MessagesInbox,
-        props: true
+        props: true,
+        meta: {
+            requiresAuth: true
+        }
     }
-    // {
-    //   path: '/chats',
-    //   name: 'chats',
-    //   // route level code-splitting
-    //   // this generates a separate chunk (about.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-    //   component: () => import(/* webpackChunkName: "about" */ '../views/ChatsView.vue')
-    // }
 ];
 const router = createRouter({
     history: createWebHashHistory(),
     routes
+});
+router.beforeEach((to, from, next) => {
+    if (to.meta.requiresAuth) {
+        const token = localStorage.getItem('token');
+        if (token) {
+            next();
+        }
+        else {
+            next('/login');
+        }
+    }
+    else {
+        next();
+    }
 });
 export default router;
