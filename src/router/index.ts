@@ -8,6 +8,7 @@ import ChatsView from '@/views/ChatsView.vue'
 import ContactsList from '../views/ContactsList.vue'
 import MessagesInbox from '@/views/MessagesInbox.vue'
 import UserChats from '../views/UserChats.vue'
+import { authenticateUser } from '../auth'
 
 const routes: Array<RouteRecordRaw> = [
   {
