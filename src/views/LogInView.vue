@@ -87,6 +87,7 @@ export default defineComponent({
       }
       try {
         const getUserByName = await getContactsByName(formData.name)
+        console.log(getUserByName)
         this.isLoading = false
         const checkAuth = await authenticateUser(formData.name, formData.password)
         if (!checkAuth) {
