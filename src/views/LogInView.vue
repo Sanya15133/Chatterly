@@ -56,10 +56,11 @@ button {
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { signInContact, getContactsByName } from '@/api'
+import { getContactsByName } from '@/api'
 import ErrorComponent from '@/components/ErrorComponent.vue'
 import LoadingComponent from '@/components/LoadingComponent.vue'
 import router from '@/router'
+import { authenticateUser } from '@/auth'
 
 export default defineComponent({
   name: 'LoginForm',
@@ -85,15 +86,15 @@ export default defineComponent({
         password: this.password
       }
       try {
-        const verifyFormData = await signInContact(formData.name, formData.password)
-        this.isLoading = false
         const getUserByName = await getContactsByName(formData.name)
-        if (!verifyFormData.token) {
+        this.isLoading = false
+        const checkAuth = await authenticateUser(formData.name, formData.password)
+        if (!checkAuth) {
           this.Message = 'User not found'
           this.Status = '404'
           router.push({ path: '/' })
         } else {
-          if (verifyFormData.token) {
+          if (checkAuth) {
             this.$router.push({
               name: 'PortalView',
               params: {
