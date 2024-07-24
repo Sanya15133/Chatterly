@@ -141,15 +141,21 @@ export default defineComponent({
       try {
         const registerUser = await postContact(this.User.name, this.User.email, this.User.password, this.User.avatar)
         this.isLoading = false
-        this.$router.push({
-          name: 'PortalView',
-          params: {
-            name: registerUser.user.name
-          },
-          query: {
-            avatar: registerUser.user.avatar
-          }
-        })
+        if (!registerUser) {
+          this.Message = 'User cannot be registered'
+          this.Status = '400'
+          router.push({ path: '/' })
+        } else {
+          this.$router.push({
+            name: '/login',
+            params: {
+              name: registerUser.user.name
+            },
+            query: {
+              avatar: registerUser.user.avatar
+            }
+          })
+        }
       } catch (error) {
         this.Message = 'User already exists, redirecting you to login page'
         this.Status = '400'

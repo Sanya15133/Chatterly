@@ -16,7 +16,7 @@ const routes: Array<RouteRecordRaw> = [
     component: RegisterView
   },
   {
-    path: '/portal',
+    path: '/portal/:name',
     name: 'PortalView',
     component: PortalView
   },

@@ -3,6 +3,7 @@ import { signInContact } from './api'
 export const authenticateUser = async (name: string, password: string) => {
   try {
     const verifyFormData = await signInContact(name, password)
+    console.log({ verifyFormData })
     if (!verifyFormData.token) {
       console.error('User has not been authenticated')
       return false

@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <h1>My Account</h1>
-    <p>{{ name }}</p>
-    <img v-if="avatarUrl" :src="avatarUrl" alt="Profile Avatar">
+    <p v-if="name">Hello {{ name }}</p>
+    <img v-if="avatar" :src="avatar" alt="Profile Avatar">
   <div class="form">
     <h2>View</h2>
     <p>Click on the button below to find contacts</p>
@@ -38,12 +38,12 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'PortalView',
-  props: {
-    name: String
-  },
   computed: {
-    avatarUrl (): string | undefined {
+    avatar (): string | undefined {
       return this.$route.query.avatar as string | undefined
+    },
+    name (): string | undefined {
+      return this.$route.params.name as string | undefined
     }
   }
 })
