@@ -56,12 +56,10 @@ button {
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { signInContact } from '@/api'
+import { signInContact, getContactsByName } from '@/api'
 import ErrorComponent from '@/components/ErrorComponent.vue'
 import LoadingComponent from '@/components/LoadingComponent.vue'
 import router from '@/router'
-// import bcrypt from 'bcrypt'
-// && bcrypt.checkpw(verifyFormData.password, formData.password)
 
 export default defineComponent({
   name: 'LoginForm',
@@ -89,20 +87,23 @@ export default defineComponent({
       try {
         const verifyFormData = await signInContact(formData.name, formData.password)
         this.isLoading = false
-        if (verifyFormData.name !== formData.name) {
+        const getUserByName = await getContactsByName(formData.name)
+        if (!verifyFormData.token) {
           this.Message = 'User not found'
           this.Status = '404'
           router.push({ path: '/' })
         } else {
-          this.$router.push({
-            name: 'PortalView',
-            params: {
-              name: verifyFormData.user.name
-            },
-            query: {
-              avatar: verifyFormData.user.avatar
-            }
-          })
+          if (verifyFormData.token) {
+            this.$router.push({
+              name: 'PortalView',
+              params: {
+                name: getUserByName.user.name
+              },
+              query: {
+                avatar: getUserByName.user.avatar
+              }
+            })
+          }
         }
       } catch (error) {
         console.error('error logging in:', error)
