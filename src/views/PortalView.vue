@@ -38,6 +38,12 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'PortalView',
+  mounted () {
+    if (!sessionStorage.getItem('reloaded')) {
+      sessionStorage.setItem('reloaded', 'true')
+      window.location.reload()
+    }
+  },
   computed: {
     avatar (): string | undefined {
       return this.$route.query.avatar as string | undefined
