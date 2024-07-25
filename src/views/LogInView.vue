@@ -94,7 +94,6 @@ export default defineComponent({
           this.Status = '404'
           router.push({ path: '/' })
         } else {
-          console.log({ getUserByName })
           const token = localStorage.getItem('token')
           if (token) {
             this.$router.push({

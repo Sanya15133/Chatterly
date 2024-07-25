@@ -3,7 +3,7 @@
     <h1>Messages</h1>
     <div class="name-outline">
       <img/>
-    <p>{{ contactName }}</p>
+    <p v-if="localName">{{ localName }}</p>
   </div>
   <br>
   <div class="outline">
@@ -103,6 +103,10 @@ export default defineComponent({
   name: 'ChatsView',
   components: {
     ErrorComponent, LoadingComponent
+  },
+  props: {
+    localName: String,
+    localAvatar: String
   },
   data () {
     return {

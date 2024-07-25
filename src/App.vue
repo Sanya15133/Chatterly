@@ -1,18 +1,42 @@
 <script lang="ts">
+import { defineComponent, computed } from 'vue'
+import { useRouter } from 'vue-router'
 
+export default defineComponent({
+  name: 'App',
+  setup () {
+    const router = useRouter()
+
+    const isAuthenticated = computed(() => {
+      return localStorage.getItem('token') || false
+    })
+
+    const logout = () => {
+      localStorage.removeItem('token')
+      window.location.reload()
+      router.push('login')
+    }
+
+    return {
+      isAuthenticated,
+      logout
+    }
+  }
+})
 </script>
 
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/chats">Chats</router-link>
-    <router-link to="/chats/:name">Message</router-link>
-    <router-link to="/contacts">Find Contacts</router-link>
-    <router-link to="/login">Sign In</router-link>
-    <router-link to="/portal/:name">Portal</router-link>
-    <router-link to="/contacts/:name">Contact Profile</router-link>
-    <router-link to="/all-contacts">All Contacts</router-link>
-    <router-link to="/inbox">Inbox</router-link>
+    <router-link to="/">Home</router-link>&nbsp;
+    <router-link to="/login">Sign In</router-link>&nbsp;
+    <router-link v-if="isAuthenticated" to="/chats">Chats</router-link>&nbsp;
+    <router-link v-if="isAuthenticated" to="/inbox">Message</router-link>&nbsp;
+    <router-link v-if="isAuthenticated" to="/contacts">Find Contacts</router-link> &nbsp;
+    <router-link v-if="isAuthenticated" to="/portal/:name">Portal</router-link> &nbsp;
+    <router-link v-if="isAuthenticated" to='/contacts/:name'>Contact Profile</router-link>&nbsp;
+    <router-link v-if="isAuthenticated" to="/all-contacts">All Contacts</router-link>&nbsp;
+    <router-link v-if="isAuthenticated" to="/inbox">Inbox</router-link>&nbsp;
+    <button v-if="isAuthenticated" @click="logout">Logout</button>
   </nav>
   <router-view />
 </template>
