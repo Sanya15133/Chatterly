@@ -144,14 +144,13 @@ export default defineComponent({
       document.getElementById('message-area')?.append(this.contactMessage)
       this.contactMessage = ''
       document.getElementById('time')?.append(new Date().toLocaleTimeString())
+      const postMessage = await postChats(this.contactName, this.contactMessage, this.date)
+      console.log(postMessage)
       try {
         this.Message = ''
         this.Status = ''
-        this.isLoading = true
-        const postConvos = await postChats(this.contactName, this.contactMessage, this.date)
-        console.log(postConvos)
+        this.isLoading = false
       } catch (error) {
-        console.error('Error fetching contact:', error)
         this.Message = 'Error fetching contact'
         this.Status = '500'
         this.isLoading = false

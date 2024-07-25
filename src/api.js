@@ -2,11 +2,9 @@ export const getContacts = async () => {
     try {
         const response = await fetch('https://chatterly-be.onrender.com/users');
         const body = response.json();
-        console.log(body);
         return body;
     }
     catch (error) {
-        console.error('An error occurred:', error);
         throw error;
     }
 };
@@ -14,11 +12,9 @@ export const getContactsByName = async (name) => {
     try {
         const response = await fetch(`https://chatterly-be.onrender.com/users/${name}`);
         const body = await response.json();
-        console.log(body);
         return body;
     }
     catch (error) {
-        console.error('An error occurred:', error);
         throw error;
     }
 };
@@ -32,11 +28,9 @@ export const postContact = async (name, email, password, avatar) => {
             body: JSON.stringify({ name, email, password, avatar })
         });
         const body = await response.json();
-        console.log(body);
         return body;
     }
     catch (error) {
-        console.error('An error occurred:', error);
         throw error;
     }
 };
@@ -47,7 +41,6 @@ export const getChats = async () => {
         return body;
     }
     catch (error) {
-        console.error('An error occurred:', error);
         throw error;
     }
 };
@@ -58,7 +51,6 @@ export const getChatsByName = async (name) => {
         return body;
     }
     catch (error) {
-        console.error('An error occurred:', error);
         throw error;
     }
 };
@@ -75,7 +67,6 @@ export const postChats = async (name, message, date) => {
         return body;
     }
     catch (error) {
-        console.error('An error occurred:', error);
         throw error;
     }
 };
@@ -92,7 +83,6 @@ export const signInContact = async (name, password) => {
         return body;
     }
     catch (error) {
-        console.error('An error occurred:', error);
         throw error;
     }
 };

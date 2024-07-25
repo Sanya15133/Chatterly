@@ -181,7 +181,6 @@ export default defineComponent({
         console.error('Connection closed', event)
       }
     } catch (error) {
-      console.error('Error mounting component:', error)
       this.Message = 'Error mounting component'
       this.Status = '500'
       this.isLoading = false

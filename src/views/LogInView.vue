@@ -108,7 +108,6 @@ export default defineComponent({
           }
         }
       } catch (error) {
-        console.error('error logging in:', error)
         this.Message = 'Server error'
         this.Status = '500'
         this.isLoading = false

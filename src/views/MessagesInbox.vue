@@ -77,7 +77,6 @@ export default defineComponent({
       this.data = getAllMessages
       this.isLoading = false
     } catch (error) {
-      console.error('Error fetching contact:', error)
       this.Message = 'Error fetching contact'
       this.Status = '500'
       this.isLoading = false
