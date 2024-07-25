@@ -72,9 +72,9 @@ body {
 }
 
 h1 {
-    font-family: 'Ysabeau', fallback, sans-serif;
-    font-size: xx-large;
-    text-align: center;
+  font-family: 'Ysabeau', fallback, sans-serif;
+  font-size: xx-large;
+  text-align: center;
 }
 
 button {
