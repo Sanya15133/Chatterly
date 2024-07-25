@@ -3,6 +3,7 @@
       <h1>{{ name }}</h1>
       <img v-if="avatarUrl" :src="avatarUrl" alt="Contact Avatar">
     <form class="form" @submit.prevent="onSubmit">
+      <label></label>
       <p>Click on the button below to view messages with {{ name }}</p>
       <button type="submit">Messages</button>
     </form>
