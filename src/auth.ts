@@ -10,6 +10,7 @@ export const authenticateUser = async (name: string, password: string) => {
     } else {
       console.log('User has been authenticated')
       localStorage.setItem('token', verifyFormData.token)
+      localStorage.setItem('name', verifyFormData.name)
       return true
     }
   } catch (error) {

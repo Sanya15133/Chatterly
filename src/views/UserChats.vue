@@ -41,12 +41,13 @@
   border-radius: 30%;
   display: inline-block;
   vertical-align: left;
+  height: 90%
   }
 
   .name {
   display: inline-block;
   margin-left: 10px;
-  text-align: right;
+  text-align: center;
   justify-content: right;
   }
 
@@ -157,25 +158,33 @@ export default defineComponent({
     }
   },
   async mounted () {
-    const getChatsByLocalName = await getChatsByName(this.contactName)
-    this.data = getChatsByLocalName
-    this.isLoading = false
-    if (this.connection) {
-      console.log('WebSocket created')
-    } else {
-      console.error('Failed to create WebSocket')
-    }
-    this.connection.onopen = (event) => {
-      console.log('Connection opened', event)
-    }
-    this.connection.onmessage = (event) => {
-      console.log('Server: ' + event.data)
-    }
-    this.connection.onerror = (event) => {
-      console.error('Error', event)
-    }
-    this.connection.onclose = (event) => {
-      console.error('Connection closed', event)
+    this.isLoading = true
+    try {
+      const getChatsByLocalName = await getChatsByName(this.contactName)
+      this.data = getChatsByLocalName
+      this.isLoading = false
+      if (this.connection) {
+        console.log('WebSocket created')
+      } else {
+        console.error('Failed to create WebSocket')
+      }
+      this.connection.onopen = (event) => {
+        console.log('Connection opened', event)
+      }
+      this.connection.onmessage = (event) => {
+        console.log('Server: ' + event.data)
+      }
+      this.connection.onerror = (event) => {
+        console.error('Error', event)
+      }
+      this.connection.onclose = (event) => {
+        console.error('Connection closed', event)
+      }
+    } catch (error) {
+      console.error('Error mounting component:', error)
+      this.Message = 'Error mounting component'
+      this.Status = '500'
+      this.isLoading = false
     }
   },
   methods: {
