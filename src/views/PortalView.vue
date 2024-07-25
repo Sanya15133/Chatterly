@@ -41,7 +41,7 @@ export default defineComponent({
   mounted () {
     if (!sessionStorage.getItem('reloaded')) {
       sessionStorage.setItem('reloaded', 'true')
-      window.location.reload()
+      location.reload()
     }
   },
   computed: {

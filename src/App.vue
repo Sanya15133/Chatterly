@@ -13,7 +13,7 @@ export default defineComponent({
 
     const logout = () => {
       localStorage.removeItem('token')
-      window.location.reload()
+      location.reload()
       router.push('login')
     }
 
@@ -30,10 +30,10 @@ export default defineComponent({
     <router-link to="/">Home</router-link>&nbsp;
     <router-link to="/login">Sign In</router-link>&nbsp;
     <router-link v-if="isAuthenticated" to="/chats">Chats</router-link>&nbsp;
-    <router-link v-if="isAuthenticated" to="/chats/:name">Message</router-link>&nbsp;
+    <router-link v-if="isAuthenticated" to="/chats/:name"></router-link>
     <router-link v-if="isAuthenticated" to="/contacts">Find Contacts</router-link> &nbsp;
     <router-link v-if="isAuthenticated" to="/portal/:name">Portal</router-link> &nbsp;
-    <router-link v-if="isAuthenticated" to='/contacts/:name'>Contact Profile</router-link>&nbsp;
+    <router-link v-if="isAuthenticated" to='/contacts/:name'></router-link>
     <router-link v-if="isAuthenticated" to="/all-contacts">All Contacts</router-link>&nbsp;
     <router-link v-if="isAuthenticated" to="/inbox">Inbox</router-link>&nbsp;
     <button v-if="isAuthenticated" @click="logout">Logout</button>
