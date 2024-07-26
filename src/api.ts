@@ -31,6 +31,7 @@ export const getChats = async () => {
 export const getChatsByName = async (name: string) => {
   const response = await fetch(`https://chatterly-be.onrender.com/chats/${name}`)
   const body = await response.json()
+  console.log(body.chats)
   return body
 }
 

@@ -160,7 +160,13 @@ export default defineComponent({
   async mounted () {
     this.isLoading = true
     try {
-      await getChatsByName(this.contactName)
+      const getMessage = await getChatsByName(this.contactName)
+      console.log(getMessage)
+      if (getMessage.chats.length === 0) {
+        this.Message = 'This user has no chats'
+        this.Status = '404'
+        this.isLoading = false
+      }
       this.isLoading = false
       if (this.connection) {
         console.log('WebSocket created')
