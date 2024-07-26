@@ -27,7 +27,7 @@ export default defineComponent({
 
 <template>
   <nav>
-    <router-link to="/">Home</router-link>&nbsp;
+    <router-link to="/">Register</router-link>&nbsp;
     <router-link to="/login">Sign In</router-link>&nbsp;
     <router-link v-if="isAuthenticated" to="/chats">Chats</router-link>&nbsp;
     <router-link v-if="isAuthenticated" to="/chats/:name"></router-link>
