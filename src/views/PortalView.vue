@@ -38,7 +38,7 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'PortalView',
-  beforeMount () {
+  mounted () {
     if (!sessionStorage.getItem('reloaded')) {
       sessionStorage.setItem('reloaded', 'true')
       location.reload()

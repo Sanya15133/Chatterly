@@ -166,6 +166,7 @@ export default defineComponent({
       if (!getMessage.chats) {
         this.Message = 'This user has no chats'
         this.Status = '404'
+        location.reload()
       } else {
         this.data.chats = getMessage.chats
       }
