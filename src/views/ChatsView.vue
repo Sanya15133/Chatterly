@@ -142,10 +142,10 @@ export default defineComponent({
     async onSubmit () {
       this.connection.send(this.contactMessage)
       document.getElementById('message-area')?.append(this.contactMessage)
+      const userName = this.localName as string
+      await postChats(userName, this.contactMessage)
       this.contactMessage = ''
       document.getElementById('time')?.append(new Date().toLocaleTimeString())
-      const postMessage = await postChats(this.contactName, this.contactMessage)
-      console.log(postMessage)
       try {
         this.Message = ''
         this.Status = ''

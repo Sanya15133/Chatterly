@@ -160,8 +160,7 @@ export default defineComponent({
   async mounted () {
     this.isLoading = true
     try {
-      const getChatsByLocalName = await getChatsByName(this.contactName)
-      this.data = getChatsByLocalName
+      await getChatsByName(this.contactName)
       this.isLoading = false
       if (this.connection) {
         console.log('WebSocket created')
@@ -190,10 +189,8 @@ export default defineComponent({
     async onSubmit () {
       this.isLoading = true
       this.connection.send(this.contactMessage)
-      const name = this.contactName
-      const message = this.contactMessage
-      const postMessage = await postChats(name, message)
-      console.log({ postMessage })
+      const personName = this.name as string
+      await postChats(personName, this.contactMessage)
       document.getElementById('message-area')?.append(this.contactMessage)
       this.contactMessage = ''
       document.getElementById('time')?.append(new Date().toLocaleTimeString())
