@@ -43,7 +43,7 @@ export const postChats = async (name: string, message: string, date: Date) => {
     body: JSON.stringify({ name, message, date })
   })
   const body = await response.json()
-  console.log(body)
+  console.log({ body })
   return body
 }
 

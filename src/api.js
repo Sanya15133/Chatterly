@@ -38,7 +38,7 @@ export const postChats = async (name, message, date) => {
         body: JSON.stringify({ name, message, date })
     });
     const body = await response.json();
-    console.log(body);
+    console.log({ body });
     return body;
 };
 export const signInContact = async (name, password) => {
