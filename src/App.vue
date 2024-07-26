@@ -13,6 +13,8 @@ export default defineComponent({
 
     const logout = () => {
       localStorage.removeItem('token')
+      localStorage.removeItem('name')
+      sessionStorage.clear()
       location.reload()
       router.push('login')
     }
