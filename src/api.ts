@@ -1,6 +1,6 @@
 export const getContacts = async () => {
   const response = await fetch('https://chatterly-be.onrender.com/users')
-  const body = response.json()
+  const body = await response.json()
   return body
 }
 
@@ -24,13 +24,13 @@ export const postContact = async (name: string, email: string, password: string,
 
 export const getChats = async () => {
   const response = await fetch('https://chatterly-be.onrender.com/chats')
-  const body = response.json()
+  const body = await response.json()
   return body
 }
 
 export const getChatsByName = async (name: string) => {
   const response = await fetch(`https://chatterly-be.onrender.com/chats/${name}`)
-  const body = response.json()
+  const body = await response.json()
   return body
 }
 
@@ -42,7 +42,7 @@ export const postChats = async (name: string, message: string, date: Date) => {
     },
     body: JSON.stringify({ name, message, date })
   })
-  const body = response.json()
+  const body = await response.json()
   console.log(body)
   return body
 }
@@ -55,6 +55,6 @@ export const signInContact = async (name: string, password: string) => {
     },
     body: JSON.stringify({ name, password })
   })
-  const body = response.json()
+  const body = await response.json()
   return body
 }

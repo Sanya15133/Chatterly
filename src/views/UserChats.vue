@@ -117,7 +117,7 @@ import { defineComponent } from 'vue'
 import { connectToSocket } from '../websocket'
 import ErrorComponent from '../components/ErrorComponent.vue'
 import LoadingComponent from '../components/LoadingComponent.vue'
-import { getChatsByName } from '@/api'
+import { getChatsByName, postChats } from '@/api'
 
 type Chat = {
   id: number,
@@ -188,14 +188,20 @@ export default defineComponent({
   },
   methods: {
     async onSubmit () {
+      this.isLoading = true
       this.connection.send(this.contactMessage)
+      const name = this.contactName
+      const message = this.contactMessage
+      const date = this.date
+      const postMessage = await postChats(name, message, date)
+      console.log(postMessage)
       document.getElementById('message-area')?.append(this.contactMessage)
       this.contactMessage = ''
       document.getElementById('time')?.append(new Date().toLocaleTimeString())
       try {
         this.Message = ''
         this.Status = ''
-        this.isLoading = true
+        this.isLoading = false
       } catch (error) {
         console.error('Error fetching contact:', error)
         this.Message = 'Error fetching contact'
