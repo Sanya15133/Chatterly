@@ -36,7 +36,7 @@ export default defineComponent({
     <router-link v-if="isAuthenticated" to='/contacts/:name'></router-link>
     <router-link v-if="isAuthenticated" to="/all-contacts">All Contacts</router-link>&nbsp;
     <router-link v-if="isAuthenticated" to="/inbox">Inbox</router-link>&nbsp;
-    <button v-if="isAuthenticated" @click="logout">Logout</button>
+    <p class="logout" v-if="isAuthenticated" @click="logout">Logout</p>
   </nav>
   <router-view />
 </template>
@@ -52,7 +52,7 @@ nav {
   padding: 30px;
 }
 
-nav a {
+nav a, .logout {
   font-weight: bold;
   color: #2c3e50;
 }
