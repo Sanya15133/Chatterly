@@ -34,13 +34,13 @@ export const getChatsByName = async (name: string) => {
   return body
 }
 
-export const postChats = async (name: string, message: string, date: Date) => {
+export const postChats = async (name: string, message: string) => {
   const response = await fetch('https://chatterly-be.onrender.com/chats', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ name, message, date })
+    body: JSON.stringify({ name, message })
   })
   const body = await response.json()
   console.log({ body })

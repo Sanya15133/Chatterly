@@ -192,9 +192,8 @@ export default defineComponent({
       this.connection.send(this.contactMessage)
       const name = this.contactName
       const message = this.contactMessage
-      const date = this.date
-      const postMessage = await postChats(name, message, date)
-      console.log(postMessage)
+      const postMessage = await postChats(name, message)
+      console.log({ postMessage })
       document.getElementById('message-area')?.append(this.contactMessage)
       this.contactMessage = ''
       document.getElementById('time')?.append(new Date().toLocaleTimeString())
