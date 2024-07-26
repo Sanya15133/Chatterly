@@ -162,15 +162,18 @@ export default defineComponent({
     try {
       const userName = this.name as string
       const getMessage = await getChatsByName(userName)
-      console.log(getMessage.chats)
+      this.isLoading = false
       if (!getMessage.chats) {
         this.Message = 'This user has no chats'
         this.Status = '404'
-        location.reload()
       } else {
         this.data.chats = getMessage.chats
       }
       this.isLoading = false
+      if (!this.connection) {
+        this.Message = 'Websocket not working'
+        this.Status = '500'
+      }
       if (this.connection) {
         console.log('WebSocket created')
       } else {
@@ -189,8 +192,7 @@ export default defineComponent({
         console.error('Connection closed', event)
       }
     } catch (error) {
-      this.Message = 'Error mounting component'
-      this.Status = '500'
+      console.log('Error in created hook:', error)
       this.isLoading = false
     }
   },
