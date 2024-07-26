@@ -160,12 +160,14 @@ export default defineComponent({
   async mounted () {
     this.isLoading = true
     try {
-      const getMessage = await getChatsByName(this.contactName)
-      console.log(getMessage)
-      if (getMessage.chats.length === 0) {
+      const userName = this.name as string
+      const getMessage = await getChatsByName(userName)
+      console.log(getMessage.chats)
+      if (!getMessage.chats) {
         this.Message = 'This user has no chats'
         this.Status = '404'
-        this.isLoading = false
+      } else {
+        this.data.chats = getMessage.chats
       }
       this.isLoading = false
       if (this.connection) {
