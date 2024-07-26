@@ -52,9 +52,16 @@ nav {
   padding: 30px;
 }
 
-nav a, .logout {
+nav a {
   font-weight: bold;
   color: #2c3e50;
+  font-size: medium;
+}
+
+.logout {
+  font-weight: bold;
+  color: #dae4ee;
+  font-size: medium;
 }
 
 nav a.router-link-exact-active {
