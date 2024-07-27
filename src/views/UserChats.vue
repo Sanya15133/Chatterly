@@ -204,10 +204,19 @@ export default defineComponent({
       await postChats(personName, this.contactMessage)
       const message = document.createElement('p')
       message.innerText = this.contactMessage
-      document.body.appendChild(message)
-      this.contactMessage = ''
+      const msgOutline = document.querySelector('.msg-box')
       const theDate = document.createElement('p')
       theDate.innerText = new Date().toLocaleTimeString()
+      if (msgOutline) {
+        msgOutline.appendChild(message)
+        msgOutline.appendChild(theDate)
+      }
+      const outline = document.querySelector('.outline')
+      if (outline && msgOutline) {
+        outline.appendChild(msgOutline)
+      }
+      location.reload()
+      this.contactMessage = ''
       try {
         this.Message = ''
         this.Status = ''

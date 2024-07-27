@@ -31,7 +31,7 @@
   background-color: white;
 }
 
-.msg-outline {
+.msg-outline, .msg-box {
   display: block;
   border: 1px solid lightgray;
   padding: 1%;
@@ -141,7 +141,7 @@ export default defineComponent({
       const message = document.createElement('p')
       message.innerText = this.contactMessage
       const messageBox = document.createElement('div')
-      console.log(messageBox)
+      messageBox.className = 'msg-box'
       const theDate = document.createElement('p')
       theDate.innerText = new Date().toLocaleTimeString()
       messageBox.appendChild(message)
