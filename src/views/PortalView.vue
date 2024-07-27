@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>My Account</h1>
-    <p v-if="name">Hello {{ name }}</p>
+    <p v-if="user">Hello {{ user }}</p>
     <img v-if="avatar" :src="avatar" alt="Profile Avatar">
   <div class="form">
     <h2>View</h2>
@@ -39,7 +39,13 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'PortalView',
+  data () {
+    return {
+      user: ''
+    }
+  },
   mounted () {
+    this.user = localStorage.getItem('name') as string
     if (!sessionStorage.getItem('reloaded')) {
       sessionStorage.setItem('reloaded', 'true')
       location.reload()

@@ -154,14 +154,15 @@ export default defineComponent({
       Status: '',
       date: new Date(),
       isLoading: false,
-      connection: connectToSocket()
+      connection: connectToSocket(),
+      user: ''
     }
   },
   async mounted () {
     this.isLoading = true
     try {
-      const userName = this.name as string
-      const getMessage = await getChatsByName(userName)
+      const user = localStorage.getItem('name')
+      const getMessage = await getChatsByName(user as string)
       this.isLoading = false
       if (!getMessage.chats) {
         this.Message = 'This user has no chats'

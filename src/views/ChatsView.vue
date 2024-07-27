@@ -2,8 +2,7 @@
   <div class="form">
     <h1>Messages</h1>
     <div class="name-outline">
-      <img/>
-    <p></p>
+      <p v-if="user">{{ user }}</p>
   </div>
   <br>
   <div class="outline">
@@ -108,10 +107,12 @@ export default defineComponent({
       Status: '',
       date: new Date(),
       isLoading: false,
-      connection: connectToSocket()
+      connection: connectToSocket(),
+      user: ''
     }
   },
   async mounted () {
+    this.user = localStorage.getItem('name') as string
     if (!this.connection) {
       this.Message = 'Websocket not working'
       this.Status = '500'
@@ -142,8 +143,6 @@ export default defineComponent({
       message.innerText = this.contactMessage
       const messageBox = document.createElement('div')
       messageBox.className = 'msg-box'
-      const user = localStorage.getItem('name')
-      console.log(user)
       const theDate = document.createElement('p')
       theDate.innerText = new Date().toLocaleTimeString()
       messageBox.appendChild(message)
