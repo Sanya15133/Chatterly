@@ -202,9 +202,12 @@ export default defineComponent({
       this.connection.send(this.contactMessage)
       const personName = this.name as string
       await postChats(personName, this.contactMessage)
-      document.getElementById('message-area')?.append(this.contactMessage)
+      const message = document.createElement('p')
+      message.innerText = this.contactMessage
+      document.body.appendChild(message)
       this.contactMessage = ''
-      document.getElementById('time')?.append(new Date().toLocaleTimeString())
+      const theDate = document.createElement('p')
+      theDate.innerText = new Date().toLocaleTimeString()
       try {
         this.Message = ''
         this.Status = ''

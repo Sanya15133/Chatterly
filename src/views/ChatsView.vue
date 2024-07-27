@@ -3,14 +3,10 @@
     <h1>Messages</h1>
     <div class="name-outline">
       <img/>
-    <p v-if="localName">{{ localName }}</p>
+    <p></p>
   </div>
   <br>
   <div class="outline">
-    <div class="msg-box">
-    <p id="message-area"></p>
-    <p id="time"></p>
-  </div>
   </div>
 <br>
 <form class="container" @submit.prevent="onSubmit">
@@ -97,16 +93,11 @@ import { defineComponent } from 'vue'
 import { connectToSocket } from '../websocket'
 import ErrorComponent from '../components/ErrorComponent.vue'
 import LoadingComponent from '../components/LoadingComponent.vue'
-import { postChats } from '@/api'
 
 export default defineComponent({
   name: 'ChatsView',
   components: {
     ErrorComponent, LoadingComponent
-  },
-  props: {
-    localName: String,
-    localAvatar: String
   },
   data () {
     return {
@@ -119,7 +110,11 @@ export default defineComponent({
       connection: connectToSocket()
     }
   },
-  mounted () {
+  async mounted () {
+    if (!this.connection) {
+      this.Message = 'Websocket not working'
+      this.Status = '500'
+    }
     if (this.connection) {
       console.log('WebSocket created')
     } else {
@@ -140,12 +135,22 @@ export default defineComponent({
   },
   methods: {
     async onSubmit () {
+      this.isLoading = true
       this.connection.send(this.contactMessage)
-      document.getElementById('message-area')?.append(this.contactMessage)
-      const userName = this.localName as string
-      await postChats(userName, this.contactMessage)
+      const message = document.createElement('p')
+      message.innerText = this.contactMessage
+      const messageBox = document.createElement('div')
+      const theDate = document.createElement('p')
+      theDate.innerText = new Date().toLocaleTimeString()
+      messageBox.className = 'msg-box'
+      messageBox.appendChild(message)
+      messageBox.appendChild(theDate)
+      const outline = document.querySelector('.outline')
+      if (outline !== null) {
+        outline.appendChild(messageBox)
+      }
       this.contactMessage = ''
-      document.getElementById('time')?.append(new Date().toLocaleTimeString())
+      this.isLoading = false
       try {
         this.Message = ''
         this.Status = ''
