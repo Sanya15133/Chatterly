@@ -7,6 +7,7 @@
   </div>
   <br>
   <div class="outline">
+    <div class="msg-outline"></div>
   </div>
 <br>
 <form class="container" @submit.prevent="onSubmit">
@@ -30,7 +31,7 @@
   background-color: white;
 }
 
-.msg-box {
+.msg-outline {
   display: block;
   border: 1px solid lightgray;
   padding: 1%;
@@ -140,13 +141,13 @@ export default defineComponent({
       const message = document.createElement('p')
       message.innerText = this.contactMessage
       const messageBox = document.createElement('div')
+      console.log(messageBox)
       const theDate = document.createElement('p')
       theDate.innerText = new Date().toLocaleTimeString()
-      messageBox.className = 'msg-box'
       messageBox.appendChild(message)
       messageBox.appendChild(theDate)
-      const outline = document.querySelector('.outline')
-      if (outline !== null) {
+      const outline = document.querySelector('.msg-outline')
+      if (outline) {
         outline.appendChild(messageBox)
       }
       this.contactMessage = ''
