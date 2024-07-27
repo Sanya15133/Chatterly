@@ -7,7 +7,7 @@ export const authenticateUser = async (name, password) => {
         }
         else {
             localStorage.setItem('token', verifyFormData.token);
-            localStorage.setItem('name', verifyFormData.name);
+            localStorage.setItem('name', name);
             return true;
         }
     }

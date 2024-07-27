@@ -142,6 +142,8 @@ export default defineComponent({
       message.innerText = this.contactMessage
       const messageBox = document.createElement('div')
       messageBox.className = 'msg-box'
+      const user = localStorage.getItem('name')
+      console.log(user)
       const theDate = document.createElement('p')
       theDate.innerText = new Date().toLocaleTimeString()
       messageBox.appendChild(message)
