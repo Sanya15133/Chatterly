@@ -15,6 +15,7 @@ export default defineComponent({
       localStorage.removeItem('token')
       localStorage.removeItem('name')
       sessionStorage.clear()
+      localStorage.clear()
       location.reload()
       router.push('login')
     }
