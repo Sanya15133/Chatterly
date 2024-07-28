@@ -164,8 +164,6 @@ export default defineComponent({
       theDate.innerText = new Date().toLocaleTimeString()
       newMsgBox.appendChild(message)
       newMsgBox.appendChild(theDate)
-      console.log(newMsgBox)
-      console.log('Background Color:', window.getComputedStyle(newMsgBox).backgroundColor)
       const outline = document.querySelector('.outline')
       if (outline) {
         outline.appendChild(newMsgBox)
