@@ -67,12 +67,16 @@
  .msg-user {
   background-color: #cfc5c5 !important;
   text-align: right;
- }
+  display: flex;
+  justify-content: flex-end;
+}
 
- .msg-receiver {
+.msg-receiver {
   background-color: #f9f9f9 !important;
-  text-align: right;
- }
+  text-align: left;
+  display: flex;
+  justify-content: flex-start;
+}
 
  .outline {
   padding: 20px;
