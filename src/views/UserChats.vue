@@ -55,18 +55,21 @@
   border: 1px solid #ccc;
   padding: 1px;
   margin-bottom: 10px;
-  border-radius: 2px;
-  background-color: #f9f9f9;
+  border-radius: 1px;
+  background-color: #f9f9f9 !important;
   height: 60px;
-  }
+ }
 
-  .msg-box p {
+ .msg-box p {
   margin: 0;
-  }
+ }
+
+ .outline {
+  padding: 20px;
+ }
 
   .outline {
   display: block;
-  padding: 10px;
   border: 1px solid lightgray;
   overflow: auto;
   height: 50vh;
@@ -126,7 +129,6 @@ import LoadingComponent from '../components/LoadingComponent.vue'
 import { getChatsByName, postChats } from '@/api'
 
 type Chat = {
-  id: number,
   name: string,
   message: string,
   date: string
@@ -139,7 +141,8 @@ interface Data {
 export default defineComponent({
   name: 'UserChats',
   components: {
-    ErrorComponent, LoadingComponent
+    ErrorComponent,
+    LoadingComponent
   },
   props: {
     name: String
@@ -154,83 +157,72 @@ export default defineComponent({
       data: {
         chats: [] as Chat[]
       } as Data,
-      contactName: '',
       contactMessage: '',
       Message: '',
       Status: '',
-      date: new Date(),
       isLoading: false,
-      connection: connectToSocket(),
-      user: ''
+      connection: connectToSocket()
     }
   },
   async mounted () {
     this.isLoading = true
     try {
       const user = localStorage.getItem('name')
-      const getMessage = await getChatsByName(user as string)
-      this.isLoading = false
-      if (!getMessage.chats) {
-        this.Message = 'This user has no chats'
-        this.Status = '404'
+      if (user) {
+        const getMessage = await getChatsByName(user)
+        this.data.chats = getMessage.chats || []
       } else {
-        this.data.chats = getMessage.chats
+        this.Message = 'User not found'
+        this.Status = '404'
       }
+
       this.isLoading = false
-      if (!this.connection) {
-        this.Message = 'Websocket not working'
-        this.Status = '500'
-      }
+
       if (this.connection) {
         console.log('WebSocket created')
+        this.connection.onopen = (event) => {
+          console.log('Connection opened', event)
+        }
+        this.connection.onmessage = (event) => {
+          console.log('Server: ' + event.data)
+        }
+        this.connection.onerror = (event) => {
+          console.error('Error', event)
+        }
+        this.connection.onclose = (event) => {
+          console.error('Connection closed', event)
+        }
       } else {
-        console.error('Failed to create WebSocket')
-      }
-      this.connection.onopen = (event) => {
-        console.log('Connection opened', event)
-      }
-      this.connection.onmessage = (event) => {
-        console.log('Server: ' + event.data)
-      }
-      this.connection.onerror = (event) => {
-        console.error('Error', event)
-      }
-      this.connection.onclose = (event) => {
-        console.error('Connection closed', event)
+        this.Message = 'WebSocket not working'
+        this.Status = '500'
       }
     } catch (error) {
       console.log('Error in created hook:', error)
+      this.Message = 'An error occurred while fetching chats'
+      this.Status = '500'
       this.isLoading = false
     }
   },
   methods: {
     async onSubmit () {
       this.isLoading = true
-      this.connection.send(this.contactMessage)
-      const personName = this.name as string
-      await postChats(personName, this.contactMessage)
-      const message = document.createElement('p')
-      message.innerText = this.contactMessage
-      const msgOutline = document.querySelector('.msg-box')
-      const theDate = document.createElement('p')
-      theDate.innerText = new Date().toLocaleTimeString()
-      if (msgOutline) {
-        msgOutline.appendChild(message)
-        msgOutline.appendChild(theDate)
-      }
-      const outline = document.querySelector('.outline')
-      if (outline && msgOutline) {
-        outline.appendChild(msgOutline)
-      }
-      location.reload()
-      this.contactMessage = ''
       try {
-        this.Message = ''
-        this.Status = ''
+        if (this.connection) {
+          this.connection.send(this.contactMessage)
+        }
+        const personName = this.name as string
+        await postChats(personName, this.contactMessage)
+        const newChat: Chat = {
+          name: personName,
+          message: this.contactMessage,
+          date: new Date().toLocaleTimeString()
+        }
+        this.data.chats.push(newChat)
+        this.contactMessage = ''
         this.isLoading = false
       } catch (error) {
-        console.error('Error fetching contact:', error)
-        this.Message = 'Error fetching contact'
+        console.error('Error submitting message:', error)
+        this.Message = 'Error submitting message'
         this.Status = '500'
         this.isLoading = false
       }
