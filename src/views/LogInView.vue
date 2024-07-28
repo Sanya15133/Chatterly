@@ -51,6 +51,7 @@ input {
 button {
   padding: 0.5em 2em;
   cursor: pointer;
+  box-sizing: border-box;
 }
 </style>
 
