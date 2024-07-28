@@ -8,7 +8,7 @@
     <br>
     <ErrorComponent v-if="Message" :Status="Status" :Message="Message" />
     <div v-else class="outline">
-      <div v-for="(item, index) in data.chats" :key="index" class="msg-box">
+      <div v-for="(item, index) in data.chats" :key="index" :class="['msg-box', item.name === name ? 'msg-user' : 'msg-receiver']">
       <p id="message-area">{{ item.message }}</p>
       <p id="time">{{ item.date }}</p>
     </div>
@@ -62,6 +62,16 @@
 
  .msg-box p {
   margin: 0;
+ }
+
+ .msg-user {
+  background-color: #cfc5c5 !important;
+  text-align: right;
+ }
+
+ .msg-receiver {
+  background-color: #f9f9f9 !important;
+  text-align: right;
  }
 
  .outline {
@@ -175,9 +185,7 @@ export default defineComponent({
         this.Message = 'User not found'
         this.Status = '404'
       }
-
       this.isLoading = false
-
       if (this.connection) {
         console.log('WebSocket created')
         this.connection.onopen = (event) => {
