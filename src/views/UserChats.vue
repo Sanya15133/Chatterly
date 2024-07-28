@@ -66,6 +66,7 @@
 
   .outline {
   display: block;
+  padding: 10px;
   border: 1px solid lightgray;
   overflow: auto;
   height: 50vh;

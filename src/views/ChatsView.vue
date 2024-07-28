@@ -6,7 +6,6 @@
   </div>
   <br>
   <div class="outline">
-    <div class="msg-outline"></div>
   </div>
 <br>
 <form class="container" @submit.prevent="onSubmit">
@@ -30,18 +29,22 @@
   background-color: white;
 }
 
-.msg-outline {
+.msg-box {
   border: 1px solid #ccc;
   padding: 1px;
   margin-bottom: 10px;
-  border-radius: 2px;
-  background-color: #f9f9f9;
+  border-radius: 1px;
+  background-color: #f9f9f9 !important;
   height: 60px;
-  }
+}
 
-  .msg-outline p {
+.msg-box p {
   margin: 0;
-  }
+}
+
+.outline {
+  padding: 20px;
+}
 
 .outline {
   display: block;
@@ -144,18 +147,28 @@ export default defineComponent({
     async onSubmit () {
       this.isLoading = true
       this.connection.send(this.contactMessage)
+      const newMsgBox = document.createElement('div')
+      newMsgBox.classList.add('msg-box')
+      newMsgBox.style.backgroundColor = '#f9f9f9'
+      newMsgBox.style.border = '1px solid #ccc'
+      newMsgBox.style.padding = '1px'
+      newMsgBox.style.marginBottom = '10px'
+      newMsgBox.style.borderRadius = '1px'
+      newMsgBox.style.height = '60px'
+      newMsgBox.style.display = 'flex'
+      newMsgBox.style.flexDirection = 'column'
+      newMsgBox.style.justifyContent = 'space-between'
       const message = document.createElement('p')
       message.innerText = this.contactMessage
-      const msgOutline = document.querySelector('.msg-box')
       const theDate = document.createElement('p')
       theDate.innerText = new Date().toLocaleTimeString()
-      if (msgOutline) {
-        msgOutline.appendChild(message)
-        msgOutline.appendChild(theDate)
-      }
-      const outline = document.querySelector('.msg-outline')
-      if (outline && msgOutline) {
-        outline.appendChild(msgOutline)
+      newMsgBox.appendChild(message)
+      newMsgBox.appendChild(theDate)
+      console.log(newMsgBox)
+      console.log('Background Color:', window.getComputedStyle(newMsgBox).backgroundColor)
+      const outline = document.querySelector('.outline')
+      if (outline) {
+        outline.appendChild(newMsgBox)
       }
       this.contactMessage = ''
       try {
