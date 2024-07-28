@@ -159,8 +159,10 @@ export default defineComponent({
       newMsgBox.style.flexDirection = 'column'
       newMsgBox.style.justifyContent = 'space-between'
       const message = document.createElement('p')
+      message.style.margin = '0'
       message.innerText = this.contactMessage
       const theDate = document.createElement('p')
+      theDate.style.margin = '0'
       theDate.innerText = new Date().toLocaleTimeString()
       newMsgBox.appendChild(message)
       newMsgBox.appendChild(theDate)
