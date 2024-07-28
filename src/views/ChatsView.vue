@@ -30,13 +30,18 @@
   background-color: white;
 }
 
-.msg-outline, .msg-box {
-  display: block;
-  border: 1px solid lightgray;
-  padding: 1%;
-  margin: 3%;
-  background-color: white
-}
+.msg-outline {
+  border: 1px solid #ccc;
+  padding: 1px;
+  margin-bottom: 10px;
+  border-radius: 2px;
+  background-color: #f9f9f9;
+  height: 60px;
+  }
+
+  .msg-outline p {
+  margin: 0;
+  }
 
 .outline {
   display: block;
@@ -141,18 +146,18 @@ export default defineComponent({
       this.connection.send(this.contactMessage)
       const message = document.createElement('p')
       message.innerText = this.contactMessage
-      const messageBox = document.createElement('div')
-      messageBox.className = 'msg-box'
+      const msgOutline = document.querySelector('.msg-box')
       const theDate = document.createElement('p')
       theDate.innerText = new Date().toLocaleTimeString()
-      messageBox.appendChild(message)
-      messageBox.appendChild(theDate)
+      if (msgOutline) {
+        msgOutline.appendChild(message)
+        msgOutline.appendChild(theDate)
+      }
       const outline = document.querySelector('.msg-outline')
-      if (outline) {
-        outline.appendChild(messageBox)
+      if (outline && msgOutline) {
+        outline.appendChild(msgOutline)
       }
       this.contactMessage = ''
-      this.isLoading = false
       try {
         this.Message = ''
         this.Status = ''

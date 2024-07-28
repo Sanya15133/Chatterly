@@ -52,11 +52,16 @@
   }
 
   .msg-box {
-  display: block;
-  border: 1px solid lightgray;
-  padding: 1%;
-  margin: 3%;
-  background-color: white;
+  border: 1px solid #ccc;
+  padding: 1px;
+  margin-bottom: 10px;
+  border-radius: 2px;
+  background-color: #f9f9f9;
+  height: 60px;
+  }
+
+  .msg-box p {
+  margin: 0;
   }
 
   .outline {
