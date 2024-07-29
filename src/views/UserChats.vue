@@ -188,9 +188,6 @@ export default defineComponent({
         this.$nextTick(() => {
           this.scroll()
         })
-      } else {
-        this.Message = 'User not found'
-        this.Status = '404'
       }
       this.isLoading = false
       if (this.connection) {
