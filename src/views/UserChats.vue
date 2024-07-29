@@ -181,23 +181,18 @@ export default defineComponent({
   async mounted () {
     this.isLoading = true
     try {
-      const user = localStorage.getItem('name')
-      if (user) {
-        const getMessage = await getChatsByName(user)
-        this.data.chats = getMessage.chats
-        this.$nextTick(() => {
-          this.scroll()
-        })
-      }
+      const user = localStorage.getItem('name') as string
+      const getMessage = await getChatsByName(user)
+      this.data.chats = getMessage.chats
+      this.$nextTick(() => {
+        this.scroll()
+      })
       this.isLoading = false
-      if (this.connection) {
-        console.log('WebSocket created')
-        this.connection.onopen = (event) => {
-          console.log('Connection opened', event)
-        }
+      this.connection.onopen = (event) => {
+        console.log('Connection opened', event)
         this.connection.onmessage = async (event) => {
           const text = await event.data.text()
-          console.log('Server: ' + text)
+          this.connection.send(text)
           this.$nextTick(() => {
             this.scroll()
           })
