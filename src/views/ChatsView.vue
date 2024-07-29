@@ -49,6 +49,7 @@
 .outline {
   display: block;
   border: 1px solid lightgray;
+  overflow: auto;
   height: 50vh;
   background-image: url('https://img.freepik.com/premium-photo/embossed-paper-texture-patternlight-bacground_546139-39.jpg')
 }
@@ -166,10 +167,6 @@ export default defineComponent({
       theDate.innerText = new Date().toLocaleTimeString()
       newMsgBox.appendChild(message)
       newMsgBox.appendChild(theDate)
-      const outline = document.querySelector('.outline')
-      if (outline) {
-        outline.appendChild(newMsgBox)
-      }
       this.contactMessage = ''
       try {
         this.Message = ''

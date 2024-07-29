@@ -185,6 +185,7 @@ export default defineComponent({
       if (user) {
         const getMessage = await getChatsByName(user)
         this.data.chats = getMessage.chats
+        this.scroll()
       } else {
         this.Message = 'User not found'
         this.Status = '404'
@@ -195,8 +196,10 @@ export default defineComponent({
         this.connection.onopen = (event) => {
           console.log('Connection opened', event)
         }
-        this.connection.onmessage = (event) => {
-          console.log('Server: ' + event.data.text())
+        this.connection.onmessage = async (event) => {
+          const text = await event.data.text()
+          console.log('Server: ' + text)
+          this.scroll()
         }
         this.connection.onerror = (event) => {
           console.error('Error', event)
@@ -204,9 +207,6 @@ export default defineComponent({
         this.connection.onclose = (event) => {
           console.error('Connection closed', event)
         }
-      } else {
-        this.Message = 'WebSocket not working'
-        this.Status = '500'
       }
     } catch (error) {
       console.log('Error in created hook:', error)
@@ -232,11 +232,21 @@ export default defineComponent({
         this.data.chats.push(newChat)
         this.contactMessage = ''
         this.isLoading = false
+        this.scroll()
       } catch (error) {
         console.error('Error submitting message:', error)
         this.Message = 'Error submitting message'
         this.Status = '500'
         this.isLoading = false
+      }
+    },
+    scroll () {
+      const container = document.querySelector('.outline')
+      console.log(container, 'out')
+      if (container !== null) {
+        console.log('in')
+        console.log(container, 'in')
+        container.scrollTop = container.scrollHeight
       }
     }
   }
