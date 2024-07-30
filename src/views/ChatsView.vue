@@ -123,16 +123,17 @@ export default defineComponent({
   async mounted () {
     this.user = localStorage.getItem('name') as string
     if (!this.connection) {
-      this.Message = 'Websocket not working'
+      this.Message = 'Websocket not connected'
       this.Status = '500'
     }
     this.connection.onopen = (event) => {
       console.log('Connection opened', event)
     }
     this.connection.onmessage = async (event) => {
+      console.log('hello')
       const text = await event.data.text()
       console.log('Server: ' + text)
-      this.connection.send(this.contactMessage)
+      console.log(this.connection.send(this.contactMessage))
     }
     this.connection.onerror = (event) => {
       console.error('Error', event)
