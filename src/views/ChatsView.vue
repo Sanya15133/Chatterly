@@ -126,16 +126,13 @@ export default defineComponent({
       this.Message = 'Websocket not working'
       this.Status = '500'
     }
-    if (this.connection) {
-      console.log('WebSocket created')
-    } else {
-      console.error('Failed to create WebSocket')
-    }
     this.connection.onopen = (event) => {
       console.log('Connection opened', event)
     }
-    this.connection.onmessage = (event) => {
-      console.log('Server: ' + event.data)
+    this.connection.onmessage = async (event) => {
+      const text = await event.data.text()
+      console.log('Server: ' + text)
+      this.connection.send(this.contactMessage)
     }
     this.connection.onerror = (event) => {
       console.error('Error', event)
@@ -147,7 +144,6 @@ export default defineComponent({
   methods: {
     async onSubmit () {
       this.isLoading = true
-      this.connection.send(this.contactMessage)
       const newMsgBox = document.createElement('div')
       newMsgBox.classList.add('msg-box')
       newMsgBox.style.backgroundColor = '#f9f9f9'

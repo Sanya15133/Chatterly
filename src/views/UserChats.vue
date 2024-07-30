@@ -179,7 +179,6 @@ export default defineComponent({
     }
   },
   async mounted () {
-    this.isLoading = true
     try {
       const user = localStorage.getItem('name') as string
       const getMessage = await getChatsByName(user)
@@ -187,22 +186,21 @@ export default defineComponent({
       this.$nextTick(() => {
         this.scroll()
       })
-      this.isLoading = false
+      if (!this.connection) {
+        this.Message = 'Websocket not working'
+        this.Status = '500'
+      }
       this.connection.onopen = (event) => {
         console.log('Connection opened', event)
-        this.connection.onmessage = async (event) => {
-          const text = await event.data.text()
-          this.connection.send(text)
-          this.$nextTick(() => {
-            this.scroll()
-          })
-        }
-        this.connection.onerror = (event) => {
-          console.error('Error', event)
-        }
-        this.connection.onclose = (event) => {
-          console.error('Connection closed', event)
-        }
+        this.$nextTick(() => {
+          this.scroll()
+        })
+      }
+      this.connection.onerror = (event) => {
+        console.error('Error', event)
+      }
+      this.connection.onclose = (event) => {
+        console.error('Connection closed', event)
       }
     } catch (error) {
       console.log('Error in created hook:', error)
@@ -216,7 +214,10 @@ export default defineComponent({
       this.isLoading = true
       try {
         if (this.connection) {
-          this.connection.send(this.contactMessage)
+          this.connection.onmessage = async (event) => {
+            const text = await event.data.text()
+            this.connection.send(text)
+          }
         }
         const personName = this.name as string
         await postChats(personName, this.contactMessage)
