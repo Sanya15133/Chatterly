@@ -179,34 +179,27 @@ export default defineComponent({
     }
   },
   async mounted () {
-    try {
-      const user = localStorage.getItem('name') as string
-      const getMessage = await getChatsByName(user)
-      this.data.chats = getMessage.chats
+    const user = localStorage.getItem('name') as string
+    const getMessage = await getChatsByName(user)
+    this.data.chats = getMessage.chats
+    this.$nextTick(() => {
+      this.scroll()
+    })
+    if (!this.connection) {
+      this.Message = 'Websocket not working'
+      this.Status = '500'
+    }
+    this.connection.onopen = (event) => {
+      console.log('Connection opened', event)
       this.$nextTick(() => {
         this.scroll()
       })
-      if (!this.connection) {
-        this.Message = 'Websocket not working'
-        this.Status = '500'
-      }
-      this.connection.onopen = (event) => {
-        console.log('Connection opened', event)
-        this.$nextTick(() => {
-          this.scroll()
-        })
-      }
-      this.connection.onerror = (event) => {
-        console.error('Error', event)
-      }
-      this.connection.onclose = (event) => {
-        console.error('Connection closed', event)
-      }
-    } catch (error) {
-      console.log('Error in created hook:', error)
-      this.Message = 'An error occurred while fetching chats'
-      this.Status = '500'
-      this.isLoading = false
+    }
+    this.connection.onerror = (event) => {
+      console.error('Error', event)
+    }
+    this.connection.onclose = (event) => {
+      console.error('Connection closed', event)
     }
   },
   methods: {
