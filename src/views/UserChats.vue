@@ -1,4 +1,5 @@
 <template>
+  <div id="body">
   <div class="form">
     <h1>Messages</h1>
     <div class="name-outline">
@@ -22,9 +23,15 @@
 </form>
 </div>
 <LoadingComponent v-if="isLoading"/>
+</div>
 </template>
 
 <style scoped>
+
+#body {
+  box-sizing: border-box;
+}
+
 .name-outline {
 display: flex;
 border: 1px solid lightgray;

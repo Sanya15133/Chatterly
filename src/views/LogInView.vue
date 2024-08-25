@@ -1,4 +1,5 @@
 <template>
+  <div id="body">
       <br>
       <br>
     <div class="form">
@@ -16,9 +17,15 @@
     <br>
     <ErrorComponent v-if="Message" :Status="Status" :Message="Message" />
     <LoadingComponent v-if="isLoading"/>
+  </div>
 </template>
 
 <style scoped>
+
+#body {
+box-sizing: border-box;
+}
+
 .form {
   display: inline-block;
   justify-content: center;
@@ -29,7 +36,8 @@
   padding: 3%;
   margin-left: auto;
   margin-right: auto;
-  border: none
+  border: none;
+  box-sizing: border-box;
 }
 
 form {
