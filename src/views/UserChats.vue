@@ -147,7 +147,7 @@ import { defineComponent } from 'vue'
 import { connectToSocket } from '../websocket'
 import ErrorComponent from '../components/ErrorComponent.vue'
 import LoadingComponent from '../components/LoadingComponent.vue'
-import { getChatsByName, postChats } from '@/api'
+import { postChats } from '@/api'
 
 type Chat = {
 name: string,
@@ -186,9 +186,6 @@ export default defineComponent({
     }
   },
   async mounted () {
-    const user = localStorage.getItem('name') as string
-    const getMessage = await getChatsByName(user)
-    this.data.chats = getMessage.chats
     this.$nextTick(() => {
       this.scroll()
     })

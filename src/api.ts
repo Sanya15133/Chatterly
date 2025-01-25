@@ -1,13 +1,21 @@
 export const getContacts = async () => {
-  const response = await fetch('https://chatterly-be.onrender.com/users')
-  const body = await response.json()
-  return body
+  try {
+    const response = await fetch('https://chatterly-be.onrender.com/users')
+    const body = await response.json()
+    return body
+  } catch (error) {
+    console.log(error, 'Error fetching contacts')
+  }
 }
 
 export const getContactsByName = async (name: string) => {
-  const response = await fetch(`https://chatterly-be.onrender.com/users/${name}`)
-  const body = await response.json()
-  return body
+  try {
+    const response = await fetch(`https://chatterly-be.onrender.com/users/${name}`)
+    const body = await response.json()
+    return body
+  } catch (error) {
+    console.log(error, 'Error fetching contacts')
+  }
 }
 
 export const postContact = async (name: string, email: string, password: string, avatar: string) => {

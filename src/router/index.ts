@@ -4,7 +4,6 @@ import FindContactsView from '../views/FindContactsView.vue'
 import LoginView from '../views/LogInView.vue'
 import PortalView from '../views/PortalView.vue'
 import ContactProfileView from '../views/ContactProfileView.vue'
-import ChatsView from '@/views/ChatsView.vue'
 import ContactsList from '../views/ContactsList.vue'
 import MessagesInbox from '@/views/MessagesInbox.vue'
 import UserChats from '../views/UserChats.vue'
@@ -49,15 +48,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/contacts/:name',
     name: 'ContactView',
     component: ContactProfileView,
-    props: true,
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/chats',
-    name: 'ChatsView',
-    component: ChatsView,
     props: true,
     meta: {
       requiresAuth: true
