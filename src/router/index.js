@@ -4,7 +4,6 @@ import FindContactsView from '../views/FindContactsView.vue';
 import LoginView from '../views/LogInView.vue';
 import PortalView from '../views/PortalView.vue';
 import ContactProfileView from '../views/ContactProfileView.vue';
-import ChatsView from '@/views/ChatsView.vue';
 import ContactsList from '../views/ContactsList.vue';
 import MessagesInbox from '@/views/MessagesInbox.vue';
 import UserChats from '../views/UserChats.vue';
@@ -28,17 +27,9 @@ const routes = [
         }
     },
     {
-        path: '/contacts',
-        name: 'ContactsList',
-        component: FindContactsView,
-        meta: {
-            requiresAuth: true
-        }
-    },
-    {
         path: '/all-contacts',
         name: 'ContactList',
-        component: ContactsList,
+        components: ContactsList,
         props: true,
         meta: {
             requiresAuth: true
@@ -48,15 +39,6 @@ const routes = [
         path: '/contacts/:name',
         name: 'ContactView',
         component: ContactProfileView,
-        props: true,
-        meta: {
-            requiresAuth: true
-        }
-    },
-    {
-        path: '/chats',
-        name: 'ChatsView',
-        component: ChatsView,
         props: true,
         meta: {
             requiresAuth: true

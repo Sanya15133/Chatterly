@@ -1,6 +1,5 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import RegisterView from '../views/RegisterView.vue'
-import FindContactsView from '../views/FindContactsView.vue'
 import LoginView from '../views/LogInView.vue'
 import PortalView from '../views/PortalView.vue'
 import ContactProfileView from '../views/ContactProfileView.vue'
@@ -30,7 +29,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/contacts',
     name: 'ContactsList',
-    component: FindContactsView,
+    component: ContactProfileView,
     meta: {
       requiresAuth: true
     }

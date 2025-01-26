@@ -14,7 +14,7 @@ export const getContactsByName = async (name: string) => {
     const body = await response.json()
     return body
   } catch (error) {
-    console.log(error, 'Error fetching contacts')
+    console.log(error, 'Error fetching contact by name')
   }
 }
 

@@ -33,7 +33,6 @@ export default defineComponent({
     <router-link to="/">Register</router-link>&nbsp;
     <router-link to="/login">Sign In</router-link>&nbsp;
     <router-link v-if="isAuthenticated" to="/chats/:name"></router-link>
-    <router-link v-if="isAuthenticated" to="/contacts">Find Contacts</router-link> &nbsp;
     <router-link v-if="isAuthenticated" to="/portal/:name">Portal</router-link> &nbsp;
     <router-link v-if="isAuthenticated" to='/contacts/:name'></router-link>
     <router-link v-if="isAuthenticated" to="/all-contacts">All Contacts</router-link>&nbsp;

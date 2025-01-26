@@ -1,6 +1,16 @@
 <template>
   <div class="container">
     <h1>Contacts</h1>
+    <div class="contact-form">
+        <form @submit.prevent="onSubmit">
+          <label>Contact Name</label>
+          <input v-model="contactname" type="text" required/>
+          <ErrorComponent v-if="Message" :Status="Status" :Message="Message" />
+          <br/>
+          <button type="submit">Find Contact</button>
+          <br />
+        </form>
+      </div>
     <LoadingComponent v-if="isLoading"/>
     <ErrorComponent v-if="Message" :Status="Status" :Message="Message" />
     <div v-else class="form">
@@ -46,12 +56,24 @@ img {
   justify-content: center;
   display: inline-block;
 }
+
+.form {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 300px;
+  height: 250px;
+  padding: 3%;
+  border: none
+}
+
 </style>
 <script lang="ts">
-import { getContacts } from '@/api'
 import ErrorComponent from '@/components/ErrorComponent.vue'
 import LoadingComponent from '@/components/LoadingComponent.vue'
 import { defineComponent } from 'vue'
+import { getContactsByName, getContacts } from '@/api'
 
 type User = {
   id: number;
@@ -64,12 +86,13 @@ interface Data {
 }
 
 export default defineComponent({
-  name: 'ContactList',
+  name: 'ContactsView',
   components: {
     ErrorComponent, LoadingComponent
   },
   props: {
-    localname: String
+    name: String,
+    avatar: String
   },
   data () {
     return {
@@ -78,7 +101,8 @@ export default defineComponent({
       } as Data,
       Status: '',
       Message: '',
-      isLoading: false
+      isLoading: false,
+      contactname: ''
     }
   },
   async mounted () {
@@ -90,10 +114,38 @@ export default defineComponent({
       this.data = getAllContacts
       this.isLoading = false
     } catch (error) {
-      console.error('Error fetching contact:', error)
       this.Message = 'Error fetching contact'
       this.Status = '500'
       this.isLoading = false
+    }
+  },
+  methods: {
+    async onSubmit () {
+      this.Message = ''
+      this.Status = ''
+      this.isLoading = true
+      try {
+        const contactExists = await getContactsByName(this.contactname)
+        this.isLoading = false
+        if (!contactExists) {
+          this.Message = 'Contact does not exist'
+          this.Status = '404'
+        } else {
+          this.$router.push({
+            name: 'ContactView',
+            params: {
+              name: contactExists.user.name
+            },
+            query: {
+              avatar: contactExists.user.avatar
+            }
+          })
+        }
+      } catch (error) {
+        this.Message = 'Error fetching contact'
+        this.Status = '500'
+        this.isLoading = false
+      }
     }
   }
 })
