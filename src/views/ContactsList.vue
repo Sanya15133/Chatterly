@@ -4,7 +4,7 @@
     <div class="contact-form">
         <form @submit.prevent="onSubmit">
           <label>Contact Name</label>
-          <input v-model="contactname" type="text" required/>
+          <input v-model="contactname" type="text" required placeholder="Name here"/>
           <ErrorComponent v-if="Message" :Status="Status" :Message="Message" />
           <br/>
           <button type="submit">Find Contact</button>

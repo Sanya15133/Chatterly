@@ -37,7 +37,7 @@
 import ErrorComponent from '@/components/ErrorComponent.vue'
 import LoadingComponent from '@/components/LoadingComponent.vue'
 import { defineComponent } from 'vue'
-import { getChats } from '../api'
+import { getChatsByName } from '../api'
 
 type Chat = {
     id: number;
@@ -55,9 +55,6 @@ export default defineComponent({
   components: {
     ErrorComponent, LoadingComponent
   },
-  props: {
-    localname: String
-  },
   data () {
     return {
       data: {
@@ -65,7 +62,8 @@ export default defineComponent({
       } as Data,
       Status: '',
       Message: '',
-      isLoading: false
+      isLoading: false,
+      name: localStorage.getItem('name') as string
     }
   },
   async mounted () {
@@ -73,7 +71,8 @@ export default defineComponent({
     this.Status = ''
     this.isLoading = true
     try {
-      const getAllMessages = await getChats()
+      console.log(this.name, 'here')
+      const getAllMessages = await getChatsByName(this.name)
       this.data = getAllMessages
       this.isLoading = false
     } catch (error) {
