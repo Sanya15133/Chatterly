@@ -71,7 +71,6 @@ export default defineComponent({
     this.Status = ''
     this.isLoading = true
     try {
-      console.log(this.name, 'here')
       const getAllMessages = await getChatsByName(this.name)
       this.data = getAllMessages
       this.isLoading = false
