@@ -1,6 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import RegisterView from '../views/RegisterView.vue';
-import FindContactsView from '../views/FindContactsView.vue';
 import LoginView from '../views/LogInView.vue';
 import PortalView from '../views/PortalView.vue';
 import ContactProfileView from '../views/ContactProfileView.vue';
@@ -27,9 +26,17 @@ const routes = [
         }
     },
     {
+        path: '/contacts',
+        name: 'ContactsList',
+        component: ContactProfileView,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
         path: '/all-contacts',
         name: 'ContactList',
-        components: ContactsList,
+        component: ContactsList,
         props: true,
         meta: {
             requiresAuth: true
