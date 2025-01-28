@@ -147,13 +147,13 @@ export default defineComponent({
         this.Status = '500'
         this.isLoading = false
       }
-    }
-  },
-  async deleteContact (name: string) {
-    try {
-      await deleteContact(name)
-    } catch (error) {
-      console.error('Error deleting contact:', error)
+    },
+    async deleteContact (name: string) {
+      try {
+        await deleteContact(name)
+      } catch (error) {
+        console.error('Error deleting contact:', error)
+      }
     }
   }
 })
