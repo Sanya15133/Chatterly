@@ -151,6 +151,7 @@ export default defineComponent({
     async deleteContact (name: string) {
       try {
         await deleteContact(name)
+        window.location.reload()
       } catch (error) {
         console.error('Error deleting contact:', error)
       }

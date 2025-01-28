@@ -59,10 +59,6 @@ export const signInContact = async (name, password) => {
 };
 export const deleteContact = async (name) => {
     await fetch(`https://chatterly-be.onrender.com/users/${name}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ name })
+        method: 'DELETE'
     });
 };
