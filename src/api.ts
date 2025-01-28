@@ -79,3 +79,9 @@ export const deleteContact = async (name: string) => {
     method: 'DELETE'
   })
 }
+
+export const deleteChatByUser = async (name: string) => {
+  await fetch(`https://chatterly-be.onrender.com/chats/${name}`, {
+    method: 'DELETE'
+  })
+}

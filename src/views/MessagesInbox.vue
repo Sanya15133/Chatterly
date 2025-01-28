@@ -7,6 +7,7 @@
             <div v-for="(item, index) in data.chats" :key="index" class="card">
             <p>{{ item.name }}</p>
             <p>{{ item.message }}</p>
+            <button @click="deleteChatByUser(item.name)">Delete Chat</button>
         </div>
     </div>
 </div>
@@ -37,7 +38,7 @@
 import ErrorComponent from '@/components/ErrorComponent.vue'
 import LoadingComponent from '@/components/LoadingComponent.vue'
 import { defineComponent } from 'vue'
-import { getChatsByName } from '../api'
+import { deleteChatByUser, getChatsByName } from '../api'
 
 type Chat = {
     id: number;
@@ -63,7 +64,8 @@ export default defineComponent({
       Status: '',
       Message: '',
       isLoading: false,
-      name: localStorage.getItem('name') as string
+      username: localStorage.getItem('name') as string,
+      name: ''
     }
   },
   async mounted () {
@@ -71,13 +73,23 @@ export default defineComponent({
     this.Status = ''
     this.isLoading = true
     try {
-      const getAllMessages = await getChatsByName(this.name)
+      const getAllMessages = await getChatsByName(this.username)
       this.data = getAllMessages
       this.isLoading = false
     } catch (error) {
       this.Message = 'Error fetching contact'
       this.Status = '500'
       this.isLoading = false
+    }
+  },
+  methods: {
+    async deleteChatByUser (name: string) {
+      try {
+        await deleteChatByUser(name)
+        window.location.reload()
+      } catch (error) {
+        console.error(error)
+      }
     }
   }
 })

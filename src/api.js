@@ -62,3 +62,8 @@ export const deleteContact = async (name) => {
         method: 'DELETE'
     });
 };
+export const deleteChatByUser = async (name) => {
+    await fetch(`https://chatterly-be.onrender.com/chats/${name}`, {
+        method: 'DELETE'
+    });
+};
