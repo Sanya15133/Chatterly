@@ -20,6 +20,7 @@
         <button @click="$router.push(`/chats/${item.name}`)">
         Start a conversation
       </button>
+      <button @click="deleteContact(item.name)">Delete Contact</button>
       <br>
       </div>
     </div>
@@ -73,7 +74,7 @@ img {
 import ErrorComponent from '@/components/ErrorComponent.vue'
 import LoadingComponent from '@/components/LoadingComponent.vue'
 import { defineComponent } from 'vue'
-import { getContactsByName, getContacts } from '@/api'
+import { getContactsByName, getContacts, deleteContact } from '@/api'
 
 type User = {
   id: number;
@@ -146,6 +147,13 @@ export default defineComponent({
         this.Status = '500'
         this.isLoading = false
       }
+    }
+  },
+  async deleteContact (name: string) {
+    try {
+      await deleteContact(name)
+    } catch (error) {
+      console.error('Error deleting contact:', error)
     }
   }
 })
