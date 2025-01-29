@@ -27,14 +27,6 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
-    path: '/contacts',
-    name: 'ContactsList',
-    component: ContactProfileView,
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
     path: '/all-contacts',
     name: 'ContactList',
     component: ContactsList,

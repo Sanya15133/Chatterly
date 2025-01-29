@@ -26,14 +26,6 @@ const routes = [
         }
     },
     {
-        path: '/contacts',
-        name: 'ContactsList',
-        component: ContactProfileView,
-        meta: {
-            requiresAuth: true
-        }
-    },
-    {
         path: '/all-contacts',
         name: 'ContactList',
         component: ContactsList,

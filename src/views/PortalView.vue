@@ -6,7 +6,7 @@
   <div class="form">
     <h2>View</h2>
     <p>Click on the button below to find contacts</p>
-    <button @click="$router.push('/contacts')">Contacts</button>
+    <button @click="$router.push('/all-contacts')">Contacts</button>
     <br>
     <p>Click on the button below to find messages</p>
     <button @click="$router.push('/inbox')">Messages</button>

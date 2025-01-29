@@ -3,7 +3,7 @@
     <h1>Contacts</h1>
     <div class="contact-form">
         <form @submit.prevent="onSubmit">
-          <label>Contact Name</label>
+          <label for="contactname"></label>
           <input v-model="contactname" type="text" required placeholder="Name here"/>
           <ErrorComponent v-if="Message" :Status="Status" :Message="Message" />
           <br/>
